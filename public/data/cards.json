@@ -1,0 +1,28 @@
+{
+    "cards": [
+        {
+        "name": "FALSE REALITY",
+        "img": "/cards/card1.jpg",
+        "unlockLabel": "Unlocked from designing a VR app",
+        "cardLabel": "Grants ability to design an extension to reality worn upon the eyes."
+        },
+        {
+        "name": "THE BUILDER",
+        "img": "/cards/card2.jpg",
+        "unlockLabel": "Unlocked from buying a lego set",
+        "cardLabel": "Grants ability to design from the ground up."
+        },
+        {
+        "name": "STRENGTH",
+        "img": "/cards/card3.jpg",
+        "unlockLabel": "Unlocked from progressive overload",
+        "cardLabel": "Grants improved growth and resistance to failure."
+        },
+        {
+        "name": "THE TINKERER",
+        "img": "/cards/card4.jpg",
+        "unlockLabel": "Unlocked from modding a casio",
+        "cardLabel": "Grants the ability to reshape what already exists."
+        }
+    ]
+}

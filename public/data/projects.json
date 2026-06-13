@@ -1,0 +1,53 @@
+{
+    "projects": [
+        {
+        "name": "SAVVYWISE",
+        "description": "An AI-powered research assistant for Australian tax and compliance",
+        "img": "/project_imgs/sw_1.webp",
+        "tags": [
+            "Web App",
+            "Tax Tech",
+            "AI Integrated"
+        ]
+        },
+        {
+        "name": "MOVIE COLAB",
+        "description": "Studio-grade film production management for creators at any budget",
+        "img": "/project_imgs/mc_1.webp",
+        "tags": [
+            "Web & Mobile App",
+            "Film Production",
+            "AI Integrated"
+        ]
+        },
+        {
+        "name": "TABLE READ",
+        "description": "An AI-powered web app to simulate table reads for film scripts",
+        "img": "/project_imgs/tr_1.webp",
+        "tags": [
+            "Web App",
+            "Voice",
+            "AI Integrated"
+        ]
+        },
+        {
+        "name": "SYNC SPACE",
+        "description": "Streamlined file management and version control for film production",
+        "img": "/project_imgs/ss_1.webp",
+        "tags": [
+            "Desktop App",
+            "Film Production",
+            "File Management"
+        ]
+        },
+        {
+        "name": "NOTHING CHALLENGE",
+        "description": "Community design challenge submission for Nothing Phone 3a",
+        "img": "/project_imgs/nc_1.webp",
+        "tags": [
+            "Community Challenge",
+            "Design for Mobile"
+        ]
+        }
+    ]
+}

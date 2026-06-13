@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kashyap Rayas — Product Designer & Creative Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Kashyap Rayas — Product Designer & Creative Engineer crafting intuitive digital experiences with minimal, deliberate execution."
+    />
+    <meta name="author" content="Kashyap Rayas" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" type="image/png" href="/favicon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kashyaprayas.com/" />
+    <meta property="og:title" content="Kashyap Rayas — Product Designer & Engineer" />
+    <meta
+      property="og:description"
+      content="Designing products that are intuitive for users and straightforward for developers."
+    />
+    <meta property="og:image" content="/og_image.jpg" />
+
+    <meta
+      name="keywords"
+      content="Kashyap Rayas, Product Designer, UX, UI, Portfolio, Design Engineer, Design Systems, Movie Colab, Viga ET, Savvywise, Siggraph BNMIT"
+    />
+
+    <link rel="canonical" href="https://kashyaprayas.com/" />
+
+    <link
+    rel="preload"
+    href="/src/assets/fonts/Stara-Medium.otf"
+    as="font"
+    type="font/otf"
+    crossorigin
+    fetchpriority="high"
+    />
+    <link
+    rel="preload"
+    href="/src/assets/fonts/Stara-SemiBold.otf"
+    as="font"
+    type="font/otf"
+    crossorigin
+    />
+    <link
+    rel="preload"
+    href="/src/assets/fonts/Stara-Bold.otf"
+    as="font"
+    type="font/otf"
+    crossorigin
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        // Configuration
+        const STANDARD_WIDTH = 1920; // The width your design was built for
+
+        function applyScale() {
+          const width = window.innerWidth;
+          const root = document.documentElement; // Apply to <html> tag, safer than #root
+
+          if (width > STANDARD_WIDTH) {
+            const scale = width / STANDARD_WIDTH;
+            // Apply CSS variable for use in styling
+            root.style.setProperty('--app-scale', scale);
+            // Apply the actual browser zoom
+            root.style.zoom = scale;
+          } else {
+            root.style.setProperty('--app-scale', 1);
+            root.style.zoom = 1;
+          }
+        }
+
+        // Run immediately (before DOM is fully parsed)
+        applyScale();
+
+        // Run on resize
+        window.addEventListener('resize', applyScale);
+      })();
+    </script>
+    <title>Kashyap Rayas</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
