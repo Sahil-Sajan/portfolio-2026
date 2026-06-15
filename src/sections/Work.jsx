@@ -24,14 +24,14 @@ const BASE_PATH = "";
 const PROJECTS_JSON_URL = `${BASE_PATH}/data/projects.json`;
 const FALLBACK_IMG_SRC = BASE_PATH + "/project_imgs/placeholder.webp";
 
-const LEGO_GRID      = 30;
+const LEGO_GRID = 30;
 const LEGO_REVEAL_MS = 1200;
 const LEGO_BAND_FRAC = 0.30;
-const LEGO_FADE_MS   = 350;
-const LEGO_JITTER    = LEGO_GRID * 0.65;
+const LEGO_FADE_MS = 350;
+const LEGO_JITTER = LEGO_GRID * 0.65;
 const LEGO_LIGHT_ANGLE = Math.atan2(-0.707, -0.707);
 const legoClamp = (v) => (v > 255 ? 255 : v < 0 ? 0 : v | 0);
-const legoHash  = (ix, iy) => ((Math.sin(ix * 127.1 + iy * 311.7) * 43758.5453) % 1 + 1) % 1;
+const legoHash = (ix, iy) => ((Math.sin(ix * 127.1 + iy * 311.7) * 43758.5453) % 1 + 1) % 1;
 
 const drawLegoBrick = (ctx, r, g, b, bx, by, cornerR, studR) => {
   const cx = bx + LEGO_GRID / 2;
@@ -45,10 +45,10 @@ const drawLegoBrick = (ctx, r, g, b, bx, by, cornerR, studR) => {
   ctx.roundRect(bx, by, LEGO_GRID, LEGO_GRID, cornerR);
   ctx.clip();
   const bevel = ctx.createLinearGradient(bx, by, bx + LEGO_GRID, by + LEGO_GRID);
-  bevel.addColorStop(0,    "rgba(255,255,255,0.15)");
+  bevel.addColorStop(0, "rgba(255,255,255,0.15)");
   bevel.addColorStop(0.35, "rgba(255,255,255,0)");
   bevel.addColorStop(0.65, "rgba(0,0,0,0)");
-  bevel.addColorStop(1,    "rgba(0,0,0,0.18)");
+  bevel.addColorStop(1, "rgba(0,0,0,0.18)");
   ctx.fillStyle = bevel;
   ctx.fillRect(bx, by, LEGO_GRID, LEGO_GRID);
   if (studR >= 1.5) {
@@ -67,11 +67,11 @@ const drawLegoBrick = (ctx, r, g, b, bx, by, cornerR, studR) => {
   ctx.fillStyle = `rgb(${legoClamp(r + 6)},${legoClamp(g + 6)},${legoClamp(b + 6)})`;
   ctx.fill();
   const rim = ctx.createConicGradient(LEGO_LIGHT_ANGLE, cx, cy);
-  rim.addColorStop(0,   "rgba(255,255,255,0.58)");
+  rim.addColorStop(0, "rgba(255,255,255,0.58)");
   rim.addColorStop(0.3, "rgba(255,255,255,0)");
   rim.addColorStop(0.5, "rgba(0,0,0,0.30)");
   rim.addColorStop(0.7, "rgba(255,255,255,0)");
-  rim.addColorStop(1,   "rgba(255,255,255,0.58)");
+  rim.addColorStop(1, "rgba(255,255,255,0.58)");
   ctx.strokeStyle = rim;
   ctx.lineWidth = Math.max(0.7, studR * 0.14);
   ctx.beginPath();
@@ -88,7 +88,7 @@ const buildLegoCache = (img, w, h) => {
   sCtx.imageSmoothingEnabled = true;
   sCtx.drawImage(img, 0, 0, cols, rows);
   const { data } = sCtx.getImageData(0, 0, cols, rows);
-  const studR   = LEGO_GRID * 0.30;
+  const studR = LEGO_GRID * 0.30;
   const cornerR = Math.max(0.5, LEGO_GRID * 0.12);
   const make = (withStud) => {
     const c = document.createElement("canvas");
@@ -124,11 +124,11 @@ const applyLegoRadialClip = (ctx, w, h, threshold) => {
 };
 
 const getAppScale = () => {
-    const value = getComputedStyle(document.documentElement)
-        .getPropertyValue("--app-scale")
-        .trim();
+  const value = getComputedStyle(document.documentElement)
+    .getPropertyValue("--app-scale")
+    .trim();
 
-    return parseFloat(value) || 1;
+  return parseFloat(value) || 1;
 };
 
 const Work = forwardRef(({ handleProjectSelect }, ref) => {
@@ -158,32 +158,32 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
   const headingRef = useRef(null);
   const starRefsMap = useRef({});
 
-    const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-    const [isCursorVisible, setIsCursorVisible] = useState(false);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [isCursorVisible, setIsCursorVisible] = useState(false);
 
   const pixelCanvasRef = useRef(null);
   const legoRafRef = useRef(null);
   const legoObserverRef = useRef(null);
   const legoCacheRef = useRef(null);
 
-    const handleImgMouseMove = useCallback((e) => {
-      const s = getAppScale();
-      setCursorPos({ x: e.clientX / s, y: e.clientY / s });
-    }, []);
+  const handleImgMouseMove = useCallback((e) => {
+    const s = getAppScale();
+    setCursorPos({ x: e.clientX / s, y: e.clientY / s });
+  }, []);
 
-    const handleImgMouseEnter = useCallback(
-      (e) => {
-        // Ensure the cursor position is correct on first entry,
-        // even if there hasn't been a prior mousemove in this area.
-        handleImgMouseMove(e);
-        setIsCursorVisible(true);
-      },
-      [handleImgMouseMove]
-    );
+  const handleImgMouseEnter = useCallback(
+    (e) => {
+      // Ensure the cursor position is correct on first entry,
+      // even if there hasn't been a prior mousemove in this area.
+      handleImgMouseMove(e);
+      setIsCursorVisible(true);
+    },
+    [handleImgMouseMove]
+  );
 
-    const handleImgMouseLeave = useCallback(() => {
+  const handleImgMouseLeave = useCallback(() => {
     setIsCursorVisible(false);
-    }, []);
+  }, []);
 
 
   const syncCanvasSize = useCallback(() => {
@@ -211,7 +211,7 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
 
   const runLegoReveal = useCallback(() => {
     const canvas = pixelCanvasRef.current;
-    const cache  = legoCacheRef.current;
+    const cache = legoCacheRef.current;
     if (!canvas || !cache) return;
 
     if (legoRafRef.current) cancelAnimationFrame(legoRafRef.current);
@@ -219,18 +219,18 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
     const { studded, plain, w, h } = cache;
     if (canvas.width !== w || canvas.height !== h) return;
 
-    const off    = document.createElement("canvas");
+    const off = document.createElement("canvas");
     off.width = w; off.height = h;
     const offCtx = off.getContext("2d");
-    const maxR   = Math.max(w, h) / 2 + LEGO_GRID;
-    const start  = performance.now();
-    const ctx    = canvas.getContext("2d");
+    const maxR = Math.max(w, h) / 2 + LEGO_GRID;
+    const start = performance.now();
+    const ctx = canvas.getContext("2d");
 
     canvas.style.transition = "none";
-    canvas.style.opacity    = "1";
+    canvas.style.opacity = "1";
 
     const frame = (now) => {
-      const t  = Math.min(1, (now - start) / LEGO_REVEAL_MS);
+      const t = Math.min(1, (now - start) / LEGO_REVEAL_MS);
       const rp = t * (1 + LEGO_BAND_FRAC);
 
       offCtx.clearRect(0, 0, w, h);
@@ -265,7 +265,7 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
       } else {
         legoRafRef.current = null;
         canvas.style.transition = `opacity ${LEGO_FADE_MS}ms ease`;
-        canvas.style.opacity    = "0";
+        canvas.style.opacity = "0";
       }
     };
 
@@ -276,7 +276,7 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
     if (!projectsData || projectsData.length === 0) return;
 
     const canvas = pixelCanvasRef.current;
-    const img    = topImgRef.current;
+    const img = topImgRef.current;
     if (!canvas || !img) return;
 
     const startObserver = () => {
@@ -286,7 +286,7 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
 
       const ctx = canvas.getContext("2d");
       canvas.style.transition = "none";
-      canvas.style.opacity    = "1";
+      canvas.style.opacity = "1";
 
       // Immediately cover the real image so it never flashes through
       ctx.fillStyle = "#C2E9E7";
@@ -467,23 +467,23 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
   }, [activeIndex, projectsData]);
 
   // Clip-path reveal animation when active project changes
-    useGSAP(() => {
+  useGSAP(() => {
     if (!topImgRef.current || !bottomImgRef.current) return;
     if (!projectsData || projectsData.length === 0) return;
 
     const newSrc = activeProject.img
-        ? BASE_PATH + activeProject.img
-        : FALLBACK_IMG_SRC;
+      ? BASE_PATH + activeProject.img
+      : FALLBACK_IMG_SRC;
 
     // First mount — set both without animating
     if (prevActiveIndex.current === null) {
-        topImgRef.current.src = newSrc;
-        bottomImgRef.current.src = newSrc;
-        gsap.set(topImgRef.current, {
-            clipPath: "inset(0% 0% 0% 0% round 6px)",
-        });
-        prevActiveIndex.current = activeIndex;
-        return;
+      topImgRef.current.src = newSrc;
+      bottomImgRef.current.src = newSrc;
+      gsap.set(topImgRef.current, {
+        clipPath: "inset(0% 0% 0% 0% round 6px)",
+      });
+      prevActiveIndex.current = activeIndex;
+      return;
     }
 
     if (activeIndex === prevActiveIndex.current) return;
@@ -497,28 +497,28 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
     // Set new src on top layer, collapsed via clip-path
     topImgRef.current.src = newSrc;
     gsap.set(topImgRef.current, {
-        clipPath: "inset(50% 50% 50% 50% round 6px)",
+      clipPath: "inset(50% 50% 50% 50% round 6px)",
     });
 
     gsap.fromTo(topImgRef.current,
-        {
+      {
         clipPath: "inset(50% 50% 50% 50% round 6px)",
-        },
-        {
+      },
+      {
         clipPath: "inset(0% 0% 0% 0% round 6px)",
         duration: 0.9,
         ease: "power2.inOut",
         onComplete: () => {
-        if (topImgRef.current) {
-                gsap.set(topImgRef.current, {
-                clipPath: "inset(0% 0% 0% 0% round 6px)",
+          if (topImgRef.current) {
+            gsap.set(topImgRef.current, {
+              clipPath: "inset(0% 0% 0% 0% round 6px)",
             });
-        }
+          }
         },
-    });
+      });
 
     prevActiveIndex.current = activeIndex;
-    }, [activeIndex, projectsData, activeProject]);
+  }, [activeIndex, projectsData, activeProject]);
 
   const handleMouseEnter = useCallback(
     (index) => setHoveredIndex(index),
@@ -566,7 +566,7 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
                 <span className="heading-bracket right">{"/>"}</span>
               </div>
               <div className="descHeading">
-                A collection of Kashyap's curated works. Choose one below
+                A collection of Sahil's curated works. Choose one below
                 to view.
               </div>
             </h2>
@@ -905,10 +905,10 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
                 </svg>
               </div>
               <div className="work-img-wrapper"
-                    onMouseMove={handleImgMouseMove}
-                    onMouseEnter={handleImgMouseEnter}
-                    onMouseLeave={handleImgMouseLeave}
-                    >
+                onMouseMove={handleImgMouseMove}
+                onMouseEnter={handleImgMouseEnter}
+                onMouseLeave={handleImgMouseLeave}
+              >
                 <div className="canvas-wrapper">
                   {/* Outgoing image — sits underneath */}
                   <img
@@ -972,7 +972,7 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
       <div className="extremes-wrapper-right">
         <div className="extremes"></div>
       </div>
-            <div
+      <div
         style={{
           position: "fixed",
           top: cursorPos.y,
@@ -982,7 +982,7 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
           zIndex: 9999,
         }}
       >
-        <WorkCursor isVisible={isCursorVisible}/>
+        <WorkCursor isVisible={isCursorVisible} />
       </div>
     </section>
   );

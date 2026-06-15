@@ -30,15 +30,15 @@ gsap.registerPlugin(CustomEase, ScrollTrigger);
 })();
 
 const fonts = Object.freeze([
-  "Abril Fatface",
-  "Lobster",
-  "Lora",
-  "Merriweather",
-  "Montserrat",
-  "Oswald",
-  "Pacifico",
-  "Roboto Flex",
-  "Stara",
+  { label: "Next.js",      fontFamily: "Abril Fatface" },
+  { label: "React.js",     fontFamily: "Lobster" },
+  { label: "TypeScript",   fontFamily: "Lora" },
+  { label: "JavaScript",   fontFamily: "Merriweather" },
+  { label: "Tailwind CSS", fontFamily: "Montserrat" },
+  { label: "Shadcn/UI",    fontFamily: "Oswald" },
+  { label: "Node.js",      fontFamily: "Pacifico" },
+  { label: "Express.js",   fontFamily: "Roboto Flex" },
+  { label: "GitHub",       fontFamily: "Stara" },
 ]);
 
 const Hero = ({ isLoaded }) => {
@@ -226,8 +226,7 @@ const Hero = ({ isLoaded }) => {
       if (!fr) continue;
 
       if (lineRect.bottom >= fr.top && lineRect.bottom <= fr.bottom) {
-        const f = fonts[i];
-        if (f) setActiveFont(f);
+        if (fonts[i]) setActiveFont(fonts[i].fontFamily);
         break;
       }
     }
@@ -950,19 +949,19 @@ const Hero = ({ isLoaded }) => {
         >
           {fonts.map((font, index) => (
             <div
-              key={font}
+              key={font.label}
               className={
                 styles[
-                  font === fontWrapperState
+                  font.fontFamily === fontWrapperState
                     ? "font-wrapper-active"
                     : "font-wrapper"
                 ]
               }
               ref={(el) => (fontRefs.current[index] = el)}
-              style={{ fontFamily: font }}
-              onMouseEnter={() => setActiveFont(font)}
+              style={{ fontFamily: font.fontFamily }}
+              onMouseEnter={() => setActiveFont(font.fontFamily)}
             >
-              {font}
+              {font.label}
             </div>
           ))}
         </div>

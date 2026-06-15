@@ -570,7 +570,7 @@ const Home = forwardRef(
         ];
       }
 
-      return "This is the loud version of him";
+      return "He opened DevTools before saying hello.";
     }, [returnedFrom]);
 
     useEffect(() => {
@@ -790,14 +790,19 @@ const Home = forwardRef(
                 <AnimatedMan isLoaded={isLoaded} />
               </div>
               <h1 className={styles.heroText}>
-                Fast-moving <span>ideas</span>
-                <span>,</span> Thoughtful <span>execution</span>
+                Less <span>clutter</span>
+                <span>.</span> More <span>intention</span>
+                <span>.</span> Better <span>experiences</span>
                 <span>.</span>
               </h1>
+
               <h2 className={styles.heroCaption}>
-                Well hello there! I'm <span>Sahil Meymon.</span> I design
-                0‑1 products that are intuitive for users and straightforward
-                for developers. I als- <span>[ muted ]</span>
+                Well hello there! I'm <span>Sahil Sajjan.</span> Honestly, I treat the
+                browser like an open canvas and <span>Next.js</span> like my medium. I
+                love taking heavy, complex logic and turning it into clean, fluid web
+                experiences that just feel right when you use them. To me, a
+                pixel-perfect layout and a smooth animation aren't just details — they're
+                the whole craft. I als- <span>[ muted ]</span>
               </h2>
               <div className={styles.botText}>
                 <h2 className={styles.heroCaption2}>
@@ -877,8 +882,8 @@ const Home = forwardRef(
                   className={styles.metricWrapper}
                 >
                   <Metric
-                    name={"PRODUCTS DESIGNED"}
-                    count={11}
+                    name={"PROJECTS COMPLETED"}
+                    count={5}
                     isLoaded={isLoaded}
                     ref={grassTargetRef2}
                     delay={1.5}
@@ -888,9 +893,9 @@ const Home = forwardRef(
                     targetRef={grassTargetRef2}
                   />
                   <Metric
-                    name={"DESIGN EXPERIENCE"}
+                    name={"DEV EXPERIENCE"}
                     count={
-                      "+" +
+                      +
                       Math.floor(
                         (new Date() - new Date("2023-10-01")) /
                         (1000 * 60 * 60 * 24 * 365.25)
@@ -1105,9 +1110,7 @@ const Home = forwardRef(
                   )
                   ]
                 }{" "}
-                years, Kashyap has immersed himself in the world of product
-                design, nurturing his dream of becoming a leading design
-                engineer. He is shy and known to daydream from time to time.
+                years, Sahil has been mastering frameworks and code to become as strong as possible. He is a quiet developer with a massive dream: to build legendary digital experiences and push his work to total perfection.
               </h3>
               <div className={styles.stars}>
                 {Array.from({ length: STAR_COUNT }, (_, i) => (

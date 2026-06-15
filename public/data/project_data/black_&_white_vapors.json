@@ -1,0 +1,65 @@
+{
+    "content": [
+        {
+            "type": "img",
+            "url": "/project_imgs/nc_1.webp",
+            "caption": ""
+        },
+        {
+            "type": "bigtext",
+            "text1": "OVERVIEW",
+            "text2": "End-to-end e-commerce, delivered solo",
+            "text3": "Black & White Vapors is a full-featured vape e-commerce platform I designed and developed independently as a freelance project. Built with Next.js, TypeScript, and Tailwind CSS, the platform covers the complete commerce stack — product catalogue, filtering, cart, checkout, and a full custom admin dashboard for real-time inventory, order, and product management. I managed the entire project lifecycle solo, from requirements gathering through to production deployment on Vercel."
+        },
+        {
+            "type": "bigtext",
+            "text1": "THE BRIEF",
+            "text2": "One developer. Full platform. Hard deadline.",
+            "text3": "The client needed a production-ready e-commerce platform with an admin backend, delivered within a fixed timeline. There was no team — just me handling scoping, UI design, development, and deployment. Working solo on a full-stack commerce project demands tight prioritisation: I focused on getting the core buying flow and admin operations right first, then layered in refinements."
+        },
+        {
+            "type": "img",
+            "url": "/project_imgs/nc_2.webp",
+            "caption": "Storefront — product catalogue with search and category filtering"
+        },
+        {
+            "type": "bigtext",
+            "text1": "THE STOREFRONT",
+            "text2": "Browse, filter, checkout",
+            "text3": "The storefront was built for clean, fast product browsing — search, category filtering, product detail pages, cart, and a streamlined checkout. I applied mobile-first responsive design throughout, with performance optimisations including lazy loading and image compression keeping the experience fast on any connection."
+        },
+        {
+            "type": "img",
+            "url": "/project_imgs/nc_3.webp",
+            "caption": "Product detail page with cart integration and variant selection"
+        },
+        {
+            "type": "bigtext",
+            "text1": "THE ADMIN",
+            "text2": "Real-time control for a one-person operation",
+            "text3": "The custom admin dashboard was built for the client to operate independently after handoff — no technical knowledge required. It covers real-time inventory tracking, order status management, and product CRUD. I designed the admin interface to surface the most critical information first and make common operations — updating stock, fulfilling orders — achievable in as few clicks as possible."
+        },
+        {
+            "type": "img",
+            "url": "/project_imgs/nc_4.webp",
+            "caption": "Admin dashboard — inventory, orders, and product management in one view"
+        },
+        {
+            "type": "bigtext",
+            "text1": "REFLECTIONS",
+            "text2": "What solo delivery teaches you",
+            "text3": "Owning the full lifecycle of a production platform — from the first requirements call to deployment and client handoff — builds a different kind of clarity about what actually matters. Every feature needed to justify its scope. Every design decision needed to survive without a team to catch edge cases. This project reinforced my ability to ship complete, production-grade work independently and on time."
+        }
+    ],
+    "details": {
+        "timeline": "2025 – Present",
+        "company": "Freelance",
+        "tags": [
+            "Freelance",
+            "Web App",
+            "E-Commerce"
+        ],
+        "projectTitle": "BLACK & WHITE VAPORS",
+        "projectLink": "https://www.blackandwhitevapors.com/"
+    }
+}

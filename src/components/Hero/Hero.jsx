@@ -30,15 +30,15 @@ gsap.registerPlugin(ScrollTrigger, CustomEase);
 })();
 
 const fonts = Object.freeze([
-  "Abril Fatface",
-  "Lobster",
-  "Lora",
-  "Merriweather",
-  "Montserrat",
-  "Oswald",
-  "Pacifico",
-  "Roboto Flex",
-  "Stara",
+  { label: "Next.js", fontFamily: "Abril Fatface" },
+  { label: "React.js", fontFamily: "Lobster" },
+  { label: "TypeScript", fontFamily: "Lora" },
+  { label: "JavaScript", fontFamily: "Merriweather" },
+  { label: "Tailwind CSS", fontFamily: "Montserrat" },
+  { label: "Shadcn/UI", fontFamily: "Oswald" },
+  { label: "Node.js", fontFamily: "Pacifico" },
+  { label: "Express.js", fontFamily: "Roboto Flex" },
+  { label: "GitHub", fontFamily: "Stara" },
 ]);
 
 const Hero = ({ isLoaded }) => {
@@ -67,11 +67,11 @@ const Hero = ({ isLoaded }) => {
   const [searchHover, setSearchHover] = useState(false);
 
   // mid-top typing animation state
-  const DEFAULT_MID_TOP = "Choose a font with me";
-  const HOVER_MID_TOP   = "One must imagine Kashyap happy";
-  const [midTopText,        setMidTopText]        = useState(DEFAULT_MID_TOP);
+  const DEFAULT_MID_TOP = "Choose a skill with me";
+  const HOVER_MID_TOP = "Pushing code up the hill, daily.";
+  const [midTopText, setMidTopText] = useState(DEFAULT_MID_TOP);
   const [midTopHighlighted, setMidTopHighlighted] = useState(false);
-  const [midTopCursor,      setMidTopCursor]      = useState(false);
+  const [midTopCursor, setMidTopCursor] = useState(false);
   const midTopTimers = useRef([]);
 
   // Eyelid refs for blinking
@@ -152,7 +152,7 @@ const Hero = ({ isLoaded }) => {
 
     // Phase 3: type each character
     const TYPE_DELAY = 560;
-    const CHAR_MS    = 48;
+    const CHAR_MS = 48;
     for (let i = 1; i <= targetText.length; i++) {
       const tChar = setTimeout(() => {
         setMidTopText(targetText.slice(0, i));
@@ -183,8 +183,7 @@ const Hero = ({ isLoaded }) => {
       if (!fr) continue;
 
       if (lineRect.bottom >= fr.top && lineRect.bottom <= fr.bottom) {
-        const f = fonts[i];
-        if (f) setActiveFont(f);
+        if (fonts[i]) setActiveFont(fonts[i].fontFamily);
         break;
       }
     }
@@ -744,7 +743,7 @@ const Hero = ({ isLoaded }) => {
     >
       <div className={styles["hero-text"]}>
         <div className={styles["wrapper-top"]}>
-          <h1 style={titleStyle}>Product</h1>
+          <h1 style={titleStyle}>Full Stack</h1>
           <img
             className={styles["b1"]}
             src={box_anchor}
@@ -770,7 +769,7 @@ const Hero = ({ isLoaded }) => {
             aria-hidden="true"
           />
         </div>
-        <h1>Designer</h1>
+        <h1>Developer</h1>
       </div>
 
       <div className={styles["fishing-line"]} ref={fishingLineRef}>
@@ -805,18 +804,18 @@ const Hero = ({ isLoaded }) => {
       >
         <div className={styles["top"]}>
           <div className={styles["top-top"]}>
-            Fonts
+            Skills
             <div className={styles["top-top-right"]}>
               <img src={figma_apply} alt="apply" />
               <img src={figma_cancel} alt="cancel" />
             </div>
           </div>
           <div className={styles["top-bot"]}
-                onMouseEnter={()=> setSearchHover(true)}
-                onMouseLeave={()=> setSearchHover(false)}
+            onMouseEnter={() => setSearchHover(true)}
+            onMouseLeave={() => setSearchHover(false)}
           >
             <img src={figma_search} alt="search" />
-            {!searchHover ? "Search fonts" : "I lied. Sorry :("}
+            {!searchHover ? "Search tech stack..." : "What I bring to the table :) "}
           </div>
         </div>
 
@@ -836,19 +835,19 @@ const Hero = ({ isLoaded }) => {
         >
           {fonts.map((font, index) => (
             <div
-              key={font}
+              key={font.label}
               className={
                 styles[
-                  font === fontWrapperState
-                    ? "font-wrapper-active"
-                    : "font-wrapper"
+                font.fontFamily === fontWrapperState
+                  ? "font-wrapper-active"
+                  : "font-wrapper"
                 ]
               }
               ref={(el) => (fontRefs.current[index] = el)}
-              style={{ fontFamily: font }}
-              onMouseEnter={() => { setActiveFont(font); playHover(); }}
+              style={{ fontFamily: font.fontFamily }}
+              onMouseEnter={() => { setActiveFont(font.fontFamily); playHover(); }}
             >
-              {font}
+              {font.label}
             </div>
           ))}
         </div>

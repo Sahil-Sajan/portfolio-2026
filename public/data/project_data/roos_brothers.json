@@ -1,0 +1,75 @@
+{
+    "content": [
+        {
+            "type": "img",
+            "url": "/project_imgs/ss_1.webp",
+            "caption": ""
+        },
+        {
+            "type": "bigtext",
+            "text1": "OVERVIEW",
+            "text2": "Luxury e-commerce where the storefront is the brand",
+            "text3": "Roos Brothers is a premium clothing brand with heritage going back to 1865. I developed the full e-commerce storefront and a customer-facing admin dashboard at Samarix, using Next.js, TypeScript, Tailwind CSS, and Shadcn/UI. At the luxury tier, the digital storefront is as much a brand statement as the product itself — every interaction needed to feel considered, refined, and fast."
+        },
+        {
+            "type": "bigtext",
+            "text1": "THE STOREFRONT",
+            "text2": "Browse, filter, covet",
+            "text3": "I built the full product browsing experience with advanced filtering, wishlist functionality, and cart — all optimised for both performance and high-end aesthetic. Product pages were engineered to load quickly and present imagery at its best, because at this price point, the visual experience directly affects purchase confidence. Code splitting and image optimisation kept Lighthouse scores high without sacrificing quality."
+        },
+        {
+            "type": "img",
+            "url": "/project_imgs/ss_2.webp",
+            "caption": "Product listing with advanced filtering — refined and fast"
+        },
+        {
+            "type": "img",
+            "url": "/project_imgs/ss_3.webp",
+            "caption": "Product detail page — imagery-first layout with streamlined purchase flow"
+        },
+        {
+            "type": "bigtext",
+            "text1": "THE ADMIN PANEL",
+            "text2": "Full control, without the complexity",
+            "text3": "Alongside the storefront, I built a customer-facing admin dashboard covering order management, product CRUD operations, and analytics summaries. The admin experience needed to match the brand's premium identity — clean layouts, confident typography, and Shadcn/UI components that felt native rather than bolted on. The goal was a tool the brand team would actually enjoy using."
+        },
+        {
+            "type": "img",
+            "url": "/project_imgs/ss_4.webp",
+            "caption": "Admin dashboard — order management and analytics at a glance"
+        },
+        {
+            "type": "img",
+            "url": "/project_imgs/ss_5.webp",
+            "caption": "Product management interface — CRUD operations designed for non-technical users"
+        },
+        {
+            "type": "bigtext",
+            "text1": "CONSISTENCY",
+            "text2": "Luxury means no rough edges",
+            "text3": "Brand consistency across every breakpoint was non-negotiable. I stress-tested the full storefront from 320px mobile to wide desktop, ensuring the luxury identity held at every screen size. Shadcn/UI components were customised throughout to align with the brand's visual language — no default styles left visible."
+        },
+        {
+            "type": "img",
+            "url": "/project_imgs/ss_6.webp",
+            "caption": "Mobile storefront — full feature parity at every breakpoint"
+        },
+        {
+            "type": "bigtext",
+            "text1": "REFLECTIONS",
+            "text2": "Craft is the product at this tier",
+            "text3": "Roos Brothers sharpened my understanding of how design quality directly maps to brand perception — and purchase intent. At the luxury tier, a slow load, a misaligned component, or a jarring transition is not a minor issue. It is a signal that the brand does not match its price point. Every optimisation decision here was made with that standard in mind."
+        }
+    ],
+    "details": {
+        "timeline": "2025 – Present",
+        "company": "Samarix",
+        "tags": [
+            "Web App",
+            "E-Commerce",
+            "Admin Dashboard"
+        ],
+        "projectTitle": "ROOS BROTHERS",
+        "projectLink": "https://roosbrothers1865.com/en"
+    }
+}

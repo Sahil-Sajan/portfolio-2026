@@ -3,14 +3,12 @@ import {
   useState,
   useRef,
   forwardRef,
-  useMemo,
   useCallback,
 } from "react";
 import { useButtonSounds } from "../hooks/useButtonSounds";
 import styles from "./About.module.css";
 import lego_210 from "/lego_210.svg";
 import star from "/star.svg";
-import AnimatedDownwardSmiley from "../components/AnimatedDownwardSmiley.jsx";
 import checked from "/checked.svg";
 import unchecked from "/unchecked.svg";
 import PercentageSlider from "../components/PercentageSlider/PercentageSlider.jsx";
@@ -38,25 +36,38 @@ const ListItem = ({ icon, text, span }) => (
 // Objective sentence as reveal segments. `trail` is punctuation glued to its
 // word (so it never wraps onto its own line); `className` styles a whole word.
 const OBJECTIVE_SEGMENTS = [
-  { text: "Ever" },
-  { text: "since" },
+  { text: "Honestly", trail: { text: ",", className: styles.objComma } },
   { text: "I" },
-  { text: "was" },
-  { text: "a" },
-  { text: "kid", trail: { text: ",", className: styles.objComma } },
-  { text: "I" },
-  { text: "knew" },
-  { text: "I" },
-  { text: "wanted" },
-  { text: "to" },
-  { text: "write", className: styles.objLora },
-  { text: "emails", className: styles.objLora },
+  { text: "treat" },
+  { text: "the" },
+  { text: "browser", className: styles.objLora },
+  { text: "like" },
+  { text: "an" },
+  { text: "open" },
+  { text: "canvas", className: styles.objLora },
   { text: "and" },
-  { text: "work" },
-  { text: "cross", className: styles.objLora },
-  { text: "functionally", className: styles.objLora },
-  { text: "across" },
-  { text: "teams", trail: { text: ".", className: styles.objPeriod } },
+  { text: "Next.js", className: styles.objLora },
+  { text: "like" },
+  { text: "my" },
+  { text: "medium", trail: { text: ".", className: styles.objPeriod } },
+  { text: "I" },
+  { text: "love" },
+  { text: "turning" },
+  { text: "complex" },
+  { text: "logic" },
+  { text: "into" },
+  { text: "clean", trail: { text: ",", className: styles.objComma } },
+  { text: "fluid", className: styles.objLora },
+  { text: "web" },
+  { text: "experiences" },
+  { text: "that" },
+  { text: "just" },
+  { text: "feel", className: styles.objLora },
+  { text: "right", trail: { text: ".", className: styles.objPeriod } },
+  { text: "Let's" },
+  { text: "build" },
+  { text: "something" },
+  { text: "beautiful", className: styles.objLora, trail: { text: ".", className: styles.objPeriod } },
 ];
 
 const ExperienceBlock = ({ company, experiences }) => (
@@ -83,7 +94,6 @@ const About = forwardRef((_, ref) => {
   const cellRef = useRef(null);
   const legRef = useRef(null);
   const grassTargetRef1 = useRef(null);
-  const grassTargetRef2 = useRef(null);
   const grassTargetRef3 = useRef(null);
   const grassTargetRef4 = useRef(null);
   const headingRef = useRef(null);
@@ -100,15 +110,7 @@ const About = forwardRef((_, ref) => {
     return () => observer.disconnect();
   }, []);
 
-  const age = useMemo(() => {
-    const today = new Date();
-    const birthDate = new Date(2001, 11, 27);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    const dayDiff = today.getDate() - birthDate.getDate();
-    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) age--;
-    return age;
-  }, []);
+
 
   useEffect(() => {
     if (!cellRef.current) return;
@@ -136,9 +138,9 @@ const About = forwardRef((_, ref) => {
 
   const goals = [
     { text: "Design a VR experience", checked: true },
-    { text: "Play Death Stranding 2" , checked: true },
-    { text: "Mod a Casio watch" , checked: true  },
-    { text: "Finish reading - Crime & Punishment"},
+    { text: "Play Death Stranding 2", checked: true },
+    { text: "Mod a Casio watch", checked: true },
+    { text: "Finish reading - Crime & Punishment" },
     { text: "Pursue a HCI Master's" },
     { text: "Learn Cardistry" },
   ];
@@ -206,49 +208,21 @@ const About = forwardRef((_, ref) => {
               <h3>DESCRIPTIVE</h3>
             </div>
             <p className={styles.desch3}>
-              <span>[ ready's intro ]</span> He's Kashyap Rayas{" "}
-              <span>[ {age} M ]</span>, Product Designer by trade and
-              professional overthinker by nature.
-              Based in India <span>[ born in the US ]</span> He cares a lot about things most
-              people won’t even notice. Sometimes a little too much. But that’s also
-              why the products he shapes feel effortless and make sense fast.
+              <span>[ my intro ]</span> I’m Sahil Sajjan{" "}
+              <span>[ Front-End Dev ]</span>, the kind of creator who treats the browser like an open canvas and Next.js like my medium[cite: 1]. Based in Hyderabad, Pakistan{" "}
+              <span>[ building for the world ]</span>, I lose sleep over whether an animation curve is 20ms too slow[cite: 1]. I force myself to notice the tiny details most people skip — and that’s exactly why the interfaces I build feel fluid, natural, and alive the second you touch them[cite: 1].
 
               <br />
               <br />
-              With a background in computer science and design, he works comfortably where
-              technology meets creativity — logic on one side, intuition on the other.
+              Where others just ship code, I practice digital craftsmanship[cite: 1]. Armed with an IT foundation and a diploma in web dev, I live right at the intersection where logic meets art — TypeScript keeping my structures honest, Framer Motion keeping my layouts beautiful[cite: 1].
               <br />
               <br />
-              Right now, he’s at VigaET as a UI/UX Engineer, leading design & product strategy
-              for a suite of apps made for the film production industry.
+              Right now, I’m at Samarix architecting production-grade platforms like Sentinel Kids, Nortra, Advibe, and Roos Brothers — while taking on the occasional freelance project when a unique, creative challenge lands on my desk[cite: 1].
             </p>
           </div>
 
           <GrassOverlay targetRef={grassTargetRef1}></GrassOverlay>
 
-          <div
-            className={styles.thirdWrapperNew}
-            ref={grassTargetRef2}
-          >
-            <div className={styles.rightThird}>
-              <div>
-                <div className={styles.iconWrapper}>
-                  <span aria-hidden="true">{">"}</span>
-                </div>
-                <h3>THE UNDERGROUND MAN</h3>
-              </div>
-              <p>
-                It is clear to me now that, owing to my unbounded vanity and
-                to the high standard I set for myself, I often looked at
-                myself with furious discontent, which verged on loathing, and
-                so I inwardly attributed the same feeling to everyone.
-              </p>
-            </div>
-            <div className={styles.rightS2}>
-              <AnimatedDownwardSmiley isActive={true} />
-            </div>
-          </div>
-          <GrassOverlay targetRef={grassTargetRef2}></GrassOverlay>
         </div>
 
         <div className={styles.left}>
@@ -266,25 +240,25 @@ const About = forwardRef((_, ref) => {
             </div>
           </div>
 
-            <a
-                href="https://drive.google.com/file/d/12dYdJq4Q5KDVlghvON27KRiGc8sl-ZMm/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View Kashyap's resume (PDF, opens in new tab)"
-                className={styles.second}
-                onMouseEnter={() => { setResumeHovered(true); playHover(); }}
-                onMouseLeave={() => setResumeHovered(false)}
-                onClick={playClick}
-                ref={grassTargetRef4}
-            >
-                <AnimatedArrow isActive={!resumeHovered} />
-                <p>
-                VIEW KASHYAP'S <span>RESUME</span>
-                </p>
-                <AnimatedArrow isActive={resumeHovered} />
-            </a>
+          <a
+            href="https://drive.google.com/file/d/12dYdJq4Q5KDVlghvON27KRiGc8sl-ZMm/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Kashyap's resume (PDF, opens in new tab)"
+            className={styles.second}
+            onMouseEnter={() => { setResumeHovered(true); playHover(); }}
+            onMouseLeave={() => setResumeHovered(false)}
+            onClick={playClick}
+            ref={grassTargetRef4}
+          >
+            <AnimatedArrow isActive={!resumeHovered} />
+            <p>
+              VIEW KASHYAP'S <span>RESUME</span>
+            </p>
+            <AnimatedArrow isActive={resumeHovered} />
+          </a>
 
-            <GrassOverlay targetRef={grassTargetRef4}></GrassOverlay>
+          <GrassOverlay targetRef={grassTargetRef4}></GrassOverlay>
 
           <div className={styles.thirdNew}>
             <div className={styles.thirdLeft}>

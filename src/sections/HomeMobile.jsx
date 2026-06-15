@@ -212,8 +212,11 @@ const Home = forwardRef(
               <span>.</span>
             </h1>
                 <h2 className={styles.topFirstH2}>
-                    Well hello there! I'm <span>Kashyap Rayas.</span> I architect 0‑1 products
-                    that are intuitive for users and straightforward for developers. I als- <span>[ muted ]</span>
+                    Well hello there! I'm <span>Sahil Sajjan.</span> Honestly, I treat the
+                    browser like an open canvas and <span>Next.js</span> like my medium. I love
+                    taking heavy, complex logic and turning it into clean, fluid web experiences
+                    that just feel right when you use them. To me, a pixel-perfect layout and a
+                    smooth animation aren't just details — they're the whole craft. I als- <span>[ muted ]</span>
                 </h2>
                     <div className={styles.botTextH2}>
                         <h2 className={styles.topFirstH22}>
