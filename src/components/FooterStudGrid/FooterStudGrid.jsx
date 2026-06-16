@@ -1,5 +1,6 @@
 import { useRef, useCallback, useEffect } from "react";
 import gsap from "gsap";
+import { useTheme } from "../../context/ThemeContext";
 
 const COLS = 14;
 const ROWS = 6;
@@ -20,28 +21,26 @@ const highlightPath = (cx, cy) =>
   `C${cx - 12} ${cy - 6.6274} ${cx - 6.6274} ${cy - 12} ${cx} ${cy - 12}Z`;
 
 export default function FooterStudGrid() {
-  const knobRefs = useRef([]);
-  const activeRef = useRef(null);   // single-click active stud
+  const { isDark } = useTheme();
+  const knobRefs   = useRef([]);
+  const activeRef  = useRef(null);
   const isDragging = useRef(false);
-  const hasMoved = useRef(false);
-  const dragPressed = useRef([]);     // ordered list of drag-pressed indices
+  const hasMoved   = useRef(false);
+  const dragPressed = useRef([]);
 
-  // Release all drag-pressed studs with a staggered elastic wave
+  const colors = isDark
+    ? { bg: "#4A0000", shadow: "#2D0000", knob: "#6B0000" }
+    : { bg: "#C2E9E7", shadow: "#559991", knob: "#C2E9E7" };
+
   const releaseAllDrag = useCallback(() => {
     dragPressed.current.forEach((idx, i) => {
       const el = knobRefs.current[idx];
       if (!el) return;
-      gsap.to(el, {
-        y: 0,
-        duration: 0.65,
-        ease: "elastic.out(1.3, 0.38)",
-        delay: i * 0.025,
-      });
+      gsap.to(el, { y: 0, duration: 0.65, ease: "elastic.out(1.3, 0.38)", delay: i * 0.025 });
     });
     dragPressed.current = [];
   }, []);
 
-  // Global mouseup ends drag and releases everything
   useEffect(() => {
     const onUp = () => {
       if (!isDragging.current) return;
@@ -52,13 +51,26 @@ export default function FooterStudGrid() {
     return () => window.removeEventListener("mouseup", onUp);
   }, [releaseAllDrag]);
 
-  // Start drag on any mousedown inside the SVG
   const handleSvgMouseDown = useCallback(() => {
     isDragging.current = true;
     hasMoved.current = false;
   }, []);
 
-  // Press stud when cursor enters it while dragging
+  // Ripple wave from hovered stud outward
+  const handleStudHover = useCallback((hovIdx) => {
+    if (isDragging.current) return;
+    const hRow = Math.floor(hovIdx / COLS);
+    const hCol = hovIdx % COLS;
+    knobRefs.current.forEach((el, idx) => {
+      if (!el) return;
+      const dist = Math.hypot(Math.floor(idx / COLS) - hRow, (idx % COLS) - hCol);
+      if (dist > 3.5) return;
+      gsap.timeline({ defaults: { overwrite: "auto" } })
+        .to(el, { y: -6, duration: 0.12, ease: "power2.out",  delay: dist * 0.045 })
+        .to(el, { y: 0,  duration: 0.5,  ease: "elastic.out(1.1, 0.38)" });
+    });
+  }, []);
+
   const handleStudEnter = useCallback((idx) => {
     if (!isDragging.current) return;
     hasMoved.current = true;
@@ -69,29 +81,18 @@ export default function FooterStudGrid() {
     gsap.to(el, { y: 7, duration: 0.08, ease: "power3.out" });
   }, []);
 
-  // Single-click toggle (only fires when mouse hasn't moved)
   const handleStudClick = useCallback((idx) => {
-    if (hasMoved.current) return; // was a drag, not a click
+    if (hasMoved.current) return;
     const el = knobRefs.current[idx];
     if (!el) return;
-
-    // Pop previously clicked stud back up
     if (activeRef.current && activeRef.current !== el) {
-      gsap.to(activeRef.current, {
-        y: 0,
-        duration: 0.65,
-        ease: "elastic.out(1.3, 0.38)",
-      });
+      gsap.to(activeRef.current, { y: 0, duration: 0.65, ease: "elastic.out(1.3, 0.38)" });
     }
-
-    // Toggle off same stud
     if (activeRef.current === el) {
       gsap.to(el, { y: 0, duration: 0.65, ease: "elastic.out(1.3, 0.38)" });
       activeRef.current = null;
       return;
     }
-
-    // Press new stud
     gsap.to(el, { y: 7, duration: 0.08, ease: "power3.out" });
     activeRef.current = el;
   }, []);
@@ -100,33 +101,28 @@ export default function FooterStudGrid() {
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
       const idx = row * COLS + col;
-      const cx = 32 + col * STEP;
-      const cy = 22 + row * STEP;
-      studs.push({ idx, cx, cy });
+      studs.push({ idx, cx: 32 + col * STEP, cy: 22 + row * STEP });
     }
   }
 
   return (
     <svg
-      width="636"
-      height="264"
-      viewBox="0 0 636 264"
-      fill="none"
+      width="636" height="264" viewBox="0 0 636 264" fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{ display: "block", width: "100%", height: "100%", userSelect: "none" }}
       onMouseDown={handleSvgMouseDown}
     >
-      <rect width="636" height="264" fill="#C2E9E7" />
+      <rect width="636" height="264" fill={colors.bg} />
       {studs.map(({ idx, cx, cy }) => (
         <g
           key={idx}
-          onMouseEnter={() => handleStudEnter(idx)}
+          onMouseEnter={() => { handleStudHover(idx); handleStudEnter(idx); }}
           onClick={() => handleStudClick(idx)}
-          style={{ cursor: "" }}
+          style={{ cursor: "pointer" }}
         >
-          <path d={shadowPath(cx, cy)} fill="#559991" />
+          <path d={shadowPath(cx, cy)} fill={colors.shadow} />
           <g ref={el => { knobRefs.current[idx] = el; }}>
-            <circle cx={cx} cy={cy} r="12" fill="#C2E9E7" />
+            <circle cx={cx} cy={cy} r="12" fill={colors.knob} />
             <path d={highlightPath(cx, cy)} fill="#FBFFFD" />
           </g>
         </g>
