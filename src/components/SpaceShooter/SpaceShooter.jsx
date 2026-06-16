@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback } from "react";
 import styles from "./SpaceShooter.module.css";
+import { useTheme } from "../../context/ThemeContext";
 
 const playBlast = (() => {
   let ctx = null;
@@ -66,7 +67,22 @@ const COLORS = {
   scoreColor: "#00A084",
 };
 
+const DARK_COLORS = {
+  bg: "#0D0D0D",
+  star: "#2A2A2A",
+  player: "#C0392B",
+  playerAccent: "#8B0000",
+  bullet: "#C0392B",
+  bulletGlow: "#E74C3C",
+  enemy: "#555",
+  enemyAccent: "#777",
+  explosion: ["#C0392B", "#E74C3C", "#333", "#777"],
+  text: "#666",
+  scoreColor: "#C0392B",
+};
+
 export default function SpaceShooter() {
+  const { isDark } = useTheme();
   const canvasRef = useRef(null);
   const stateRef = useRef(null);
   const rafRef = useRef(null);
@@ -74,6 +90,11 @@ export default function SpaceShooter() {
   const pausedRef = useRef(true);   // starts paused — waits for scroll + hover
   const inViewRef = useRef(false);
   const hoveredRef = useRef(false);
+  const colorsRef = useRef(COLORS);
+
+  useEffect(() => {
+    colorsRef.current = isDark ? DARK_COLORS : COLORS;
+  }, [isDark]);
 
   const initState = useCallback((w, h) => {
     const stars = Array.from({ length: 40 }, () => ({
@@ -112,7 +133,7 @@ export default function SpaceShooter() {
     ctx.fillStyle = accent;
     ctx.fillRect(x - w * 0.08, y - h * 0.65, w * 0.16, h * 0.28);
     // Engine glow
-    ctx.fillStyle = COLORS.bullet;
+    ctx.fillStyle = colorsRef.current.bullet;
     ctx.fillRect(x - w * 0.07, y + h * 0.32, w * 0.14, h * 0.18);
   }, []);
 
@@ -122,7 +143,7 @@ export default function SpaceShooter() {
     ctx.fillRect(x - w * 0.15, y - h * 0.3, w * 0.3, h * 0.6);
     ctx.fillRect(x - w * 0.5, y - h * 0.35, w, h * 0.3);
     ctx.fillRect(x - w * 0.3, y - h * 0.1, w * 0.6, h * 0.15);
-    ctx.fillStyle = COLORS.enemy;
+    ctx.fillStyle = colorsRef.current.enemy;
     ctx.fillRect(x - w * 0.08, y + h * 0.28, w * 0.16, h * 0.2);
   }, []);
 
@@ -217,7 +238,7 @@ export default function SpaceShooter() {
       const { w, h } = s;
 
       // — Background —
-      ctx.fillStyle = COLORS.bg;
+      ctx.fillStyle = colorsRef.current.bg;
       ctx.fillRect(0, 0, w, h);
 
       // — Stars (always scroll, even when paused) —
@@ -226,7 +247,7 @@ export default function SpaceShooter() {
           star.y += star.speed;
           if (star.y > h) { star.y = 0; star.x = Math.random() * w; }
         }
-        ctx.fillStyle = COLORS.star;
+        ctx.fillStyle = colorsRef.current.star;
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fill();
@@ -235,12 +256,12 @@ export default function SpaceShooter() {
       // — Paused overlay —
       if (paused && !s.dead) {
         // Draw frozen player
-        drawPixelShip(ctx, s.player.x, s.player.y, s.player.w, s.player.h, COLORS.player, COLORS.playerAccent);
+        drawPixelShip(ctx, s.player.x, s.player.y, s.player.w, s.player.h, colorsRef.current.player, colorsRef.current.playerAccent);
         // Pause text
         const fs = Math.max(7, w * 0.11);
         ctx.font = `bold ${fs}px monospace`;
         ctx.textAlign = "center";
-        ctx.fillStyle = "#333";
+        ctx.fillStyle = colorsRef.current.text;
         ctx.fillText(!inViewRef.current ? "scroll" : "hover", w / 2, h / 2 - fs * 0.4);
         ctx.fillText(!inViewRef.current ? "to play" : "to play", w / 2, h / 2 + fs * 0.9);
         rafRef.current = requestAnimationFrame(tick);
@@ -310,7 +331,7 @@ export default function SpaceShooter() {
                   vx: (Math.random() - 0.5) * 2.5,
                   vy: (Math.random() - 0.5) * 2.5,
                   life: 1,
-                  color: COLORS.explosion[Math.floor(Math.random() * COLORS.explosion.length)],
+                  color: colorsRef.current.explosion[Math.floor(Math.random() * colorsRef.current.explosion.length)],
                   r: Math.random() * 2 + 1,
                 });
               }
@@ -336,33 +357,33 @@ export default function SpaceShooter() {
 
         // — Draw bullets —
         s.bullets.forEach((b) => {
-          ctx.shadowColor = COLORS.bulletGlow;
+          ctx.shadowColor = colorsRef.current.bulletGlow;
           ctx.shadowBlur = 6;
-          ctx.fillStyle = COLORS.bullet;
+          ctx.fillStyle = colorsRef.current.bullet;
           ctx.fillRect(b.x - 1, b.y - 5, 2, 8);
           ctx.shadowBlur = 0;
         });
 
         // — Draw enemies —
         s.enemies.forEach((en) => {
-          drawEnemyShip(ctx, en.x, en.y, en.w, en.h, COLORS.enemy);
+          drawEnemyShip(ctx, en.x, en.y, en.w, en.h, colorsRef.current.enemy);
         });
 
         // — Draw player —
-        drawPixelShip(ctx, s.player.x, s.player.y, s.player.w, s.player.h, COLORS.player, COLORS.playerAccent);
+        drawPixelShip(ctx, s.player.x, s.player.y, s.player.w, s.player.h, colorsRef.current.player, colorsRef.current.playerAccent);
 
         // — Score —
-        ctx.fillStyle = COLORS.scoreColor;
+        ctx.fillStyle = colorsRef.current.scoreColor;
         ctx.font = `bold ${Math.max(7, w * 0.1)}px monospace`;
         ctx.textAlign = "left";
         ctx.fillText(s.score, 5, 14);
 
       } else {
         // — Game Over screen —
-        ctx.fillStyle = "#ffffff";
+        ctx.fillStyle = colorsRef.current.bg;
         ctx.fillRect(0, 0, w, h);
         s.stars.forEach((star) => {
-          ctx.fillStyle = COLORS.star;
+          ctx.fillStyle = colorsRef.current.star;
           ctx.beginPath();
           ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
           ctx.fill();
@@ -372,17 +393,17 @@ export default function SpaceShooter() {
         ctx.font = `bold ${fs}px monospace`;
         ctx.textAlign = "center";
 
-        ctx.fillStyle = COLORS.bullet;
+        ctx.fillStyle = colorsRef.current.bullet;
         ctx.fillText("GAME", w / 2, h / 2 - fs * 1.2);
         ctx.fillText("OVER", w / 2, h / 2);
 
-        ctx.fillStyle = COLORS.text;
+        ctx.fillStyle = colorsRef.current.text;
         ctx.font = `${Math.max(6, w * 0.1)}px monospace`;
         ctx.fillText(`${s.score}`, w / 2, h / 2 + fs * 1.4);
 
         // Blink "tap"
         if (Math.floor(s.frame / 30) % 2 === 0) {
-          ctx.fillStyle = "#444";
+          ctx.fillStyle = colorsRef.current.text;
           ctx.font = `${Math.max(5, w * 0.08)}px monospace`;
           ctx.fillText("tap", w / 2, h / 2 + fs * 2.4);
         }

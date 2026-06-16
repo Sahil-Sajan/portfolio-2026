@@ -7,7 +7,7 @@
     left: 0px;
     width: 257px;
     height: max-content;
-    background-color: #2C2C2C;
+    background-color: var(--hero-menu-bg);
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -24,7 +24,7 @@
         gap: 14px;
         box-sizing: border-box;
         padding: 8px 12px 8px 8px;
-        border-bottom: 1px solid #444444;
+        border-bottom: 1px solid var(--hero-menu-border);
 
         .top-top {
             width: 100%;
@@ -35,7 +35,7 @@
             justify-content: space-between;
             padding: 0px 6px 0px 8px;
             box-sizing: border-box;
-            color: #F8F8F8;
+            color: var(--hero-menu-text);
             font-size: 11px;
             font-family: "Inter", sans-serif;
             font-optical-sizing: auto;
@@ -271,6 +271,21 @@
     box-sizing: border-box;
     border-top: none;
     overflow: hidden;
+}
+
+/* Fishing-line arrow stays white in dark mode */
+:global([data-theme="dark"]) .fishing-line {
+    --off-white: #FBFFFD;
+    --off-teal:  #FBFFFD;
+}
+
+/* Pin character skin/hair to light-mode values; head opening goes dark */
+:global([data-theme="dark"]) .heroWrapper {
+    --off-black:      #121312;
+    --off-white:      #FBFFFD;
+    --off-teal:       #1E1E1E;
+    --light-off-teal: #ECF8F5;
+    --light-green:    #0D0D0D;
 }
 
 .rectHoverArea {

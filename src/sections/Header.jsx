@@ -1,6 +1,7 @@
 import './Header.css'
 import LinkButton from '../components/LinkButton/LinkButton';
 import { useButtonSounds } from '../hooks/useButtonSounds';
+import ThemeSlider from '../components/ThemeSlider/ThemeSlider';
 
 const Header = ({setLinkHovered, lenis, isLoaded}) => {
     const { playHover: _playHover, playClick: _playClick } = useButtonSounds();
@@ -19,7 +20,7 @@ const Header = ({setLinkHovered, lenis, isLoaded}) => {
                         <LinkButton linkName={"ABOUT"} linkTo={"#ABOUT"} lenis={lenis} isLoaded={isLoaded}/>
                         {/* <LinkButton linkName={"LAB"} linkTo={"#LAB"} lenis={lenis} isLoaded={isLoaded}/> */}
                         <LinkButton linkName={"CONTACT"} linkTo={"#CONTACT"} lenis={lenis} isLoaded={isLoaded}/>
-                        <div className={"cell"}></div>
+                        <div className={"cell"}><ThemeSlider /></div>
                     </nav>
                     <div className={"left"}>
                         <nav className={"links"} aria-label="Social links" onMouseEnter={() => setLinkHovered(true)} onMouseLeave={() => setLinkHovered(false)}>

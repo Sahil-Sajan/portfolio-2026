@@ -42,7 +42,7 @@ header > .middle > .left {
     }
     .green-rectangle {
         position: relative;
-        background-color: #006352;
+        background-color: var(--dark-green);
         width: 100%;
         height: 100%;
         border-left: 3px solid var(--off-teal);
@@ -129,4 +129,9 @@ header > .middle > .right {
         border-radius: 9px;
         min-width: none;
     }
+}
+
+[data-theme="dark"] header > .middle > .left .green-rectangle {
+    background-color: #1E1E1E;
+    border-color: #1E1E1E;
 }

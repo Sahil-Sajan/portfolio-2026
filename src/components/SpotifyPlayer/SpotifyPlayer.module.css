@@ -118,6 +118,7 @@
 
 .bar {
   flex: 1;
+  max-width: 160px;
   height: 3px;
   background: rgba(0, 160, 132, 0.15);
   border-radius: 2px;

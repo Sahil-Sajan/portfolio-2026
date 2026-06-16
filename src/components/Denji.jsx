@@ -5,6 +5,7 @@ import { CustomEase } from "gsap/CustomEase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import denjiBody from "/denji-body.svg";
 import denjiHand from "/denji-hand.svg";
+import { useTheme } from "../context/ThemeContext";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 
@@ -29,14 +30,33 @@ const baseRectStyle = {
   width: "100%",
 };
 
-const rectConfigs = [
+const RECT_LIGHT = [
   { zIndex: 5, backgroundColor: "#006352", height: "60px" },
   { zIndex: 4, backgroundColor: "#00735F", height: "120px" },
   { zIndex: 3, backgroundColor: "#00826B", height: "150px" },
   { zIndex: 2, backgroundColor: "#009178", height: "165px" },
 ];
 
+const RECT_DARK = [
+  { zIndex: 5, backgroundColor: "#6B0000", height: "60px" },
+  { zIndex: 4, backgroundColor: "#7A0000", height: "120px" },
+  { zIndex: 3, backgroundColor: "#8B0000", height: "150px" },
+  { zIndex: 2, backgroundColor: "#9B1010", height: "165px" },
+];
+
+const RED_OVERLAY = {
+  position: "absolute",
+  inset: 0,
+  backgroundColor: "#C0392B",
+  mixBlendMode: "hue",
+  zIndex: 15,
+  pointerEvents: "none",
+  borderRadius: "6px",
+};
+
 const Denji = () => {
+  const { isDark } = useTheme();
+  const rectConfigs = isDark ? RECT_DARK : RECT_LIGHT;
   const container = useRef(null);
   const denjiRef = useRef(null);
   const handRef = useRef(null);
@@ -208,6 +228,9 @@ const Denji = () => {
           style={{ ...baseRectStyle, ...style }}
         />
       ))}
+      {/* Red hue overlay in dark mode — uses mix-blend-mode:hue to shift
+          teal SVG backgrounds to red while leaving neutrals (skin, hair) unchanged */}
+      {isDark && <div style={RED_OVERLAY} />}
     </div>
   );
 };

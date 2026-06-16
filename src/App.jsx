@@ -8,6 +8,7 @@ import Project from './pages/Project.jsx'
 import ModifierDeck from './pages/ModifierDeck.jsx'
 import TransitionLoader from './components/TransitionLoader/TransitionLoader.jsx'
 import { useSmoothScrollConfig } from './hooks/useSmoothScrollConfig'
+import { ThemeProvider } from './context/ThemeContext.jsx'
 
 function App() {
   const flag = false
@@ -164,6 +165,7 @@ function App() {
   }, [view, selectedProjectName, projectToLoad, handleBackToLanding, handleModifierDeckSelect]);
 
   return (
+    <ThemeProvider>
     <>
       {!isPreloaderDone && (
         <Preloader onComplete={handlePreloaderComplete} onMidway={() => setIsAssetLoad(true)} />
@@ -218,6 +220,7 @@ function App() {
         )}
       </ReactLenis>
     </>
+    </ThemeProvider>
   );
 }
 

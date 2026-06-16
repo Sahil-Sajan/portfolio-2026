@@ -49,6 +49,41 @@
 
     --off-black-06: rgba(17, 35, 34, 0.6);
 
+    /* Hero font-menu (overridden in dark mode) */
+    --hero-menu-bg:     #2C2C2C;
+    --hero-menu-border: #444444;
+    --hero-menu-text:   #F8F8F8;
+    --hero-menu-sub:    #AAAAAA;
+
+    /* Hero panel background shades */
+    --hero-bg-main: #00A084;
+    --hero-bg-4:    #009178;
+    --hero-bg-3:    #00826B;
+    --hero-bg-2:    #00735F;
+    --hero-bg-1:    #006352;
+}
+
+/* ── Dark mode ────────────────────────────────────────────────── */
+[data-theme="dark"] {
+    --off-black:       #F0FAF8;
+    --dark-green:      #C0392B;
+    --light-green:     #E74C3C;
+    --off-teal:        #1E1E1E;
+    --light-off-teal:  #252525;
+    --off-white:       #0D0D0D;
+    --off-black-06:    rgba(240, 250, 248, 0.55);
+
+    --hero-menu-bg:     #2A0505;
+    --hero-menu-border: #5C1212;
+    --hero-menu-text:   #FFD5D0;
+    --hero-menu-sub:    #BB7070;
+
+    /* Hero panel background → dark red in dark mode (matches Denji) */
+    --hero-bg-main: #C0392B;
+    --hero-bg-4:    #9B1010;
+    --hero-bg-3:    #8B0000;
+    --hero-bg-2:    #7A0000;
+    --hero-bg-1:    #6B0000;
 }
 
 * {

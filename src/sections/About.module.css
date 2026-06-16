@@ -204,6 +204,11 @@
   height: 16px;
 }
 
+:global([data-theme="dark"]) .wrapper img,
+:global([data-theme="dark"]) .experienceWrapper img {
+  filter: hue-rotate(185deg) saturate(1.3) brightness(0.95);
+}
+
 /* --- RIGHT SIDE --- */
 .right {
   width: 100%;

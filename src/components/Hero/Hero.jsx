@@ -880,31 +880,31 @@ const Hero = ({ isLoaded }) => {
               </mask>
               <path
                 d="M0 0H375V471C375 475.971 370.971 480 366 480H9C4.02943 480 0 475.971 0 471V0Z"
-                fill="#00A084"
+                fill="var(--hero-bg-main)"
               />
               <path
                 ref={rect4Ref}
                 id="rect-4"
                 d="M0 0H375V165H0V0Z"
-                fill="#009178"
+                fill="var(--hero-bg-4)"
               />
               <path
                 ref={rect3Ref}
                 id="rect-3"
                 d="M0 0H375V150H0V0Z"
-                fill="#00826B"
+                fill="var(--hero-bg-3)"
               />
               <path
                 ref={rect2Ref}
                 id="rect-2"
                 d="M0 0H375V120H0V0Z"
-                fill="#00735F"
+                fill="var(--hero-bg-2)"
               />
               <path
                 ref={rect1Ref}
                 id="rect-1"
                 d="M0 0H375V60H0V0Z"
-                fill="#006352"
+                fill="var(--hero-bg-1)"
               />
 
               <g ref={parallaxGroupRef}>

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-const C  = "#00A084";
+const C  = "var(--dark-green)";
 const R  = { width: 6, height: 6, rx: 2, fill: C };
 
 /* ─────────────────────────────────────────────────
@@ -214,9 +214,9 @@ export const RobotSleeping = () => {
     <div ref={ref} style={{ position: "absolute", right: 0, bottom: 8, width: 48, height: 48 }}>
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
         {/* ZZZ — float up from above head, no overlap */}
-        <rect className="zed" x="42" y="0"  width="6" height="6" rx="2" fill={C} opacity="0"/>
-        <rect className="zed" x="36" y="0"  width="6" height="6" rx="2" fill={C} opacity="0"/>
-        <rect className="zed" x="36" y="6"  width="6" height="6" rx="2" fill={C} opacity="0"/>
+        <rect className="zed" x="42" y="0"  width="6" height="6" rx="2" fill="var(--dark-green)" opacity="0"/>
+        <rect className="zed" x="36" y="0"  width="6" height="6" rx="2" fill="var(--dark-green)" opacity="0"/>
+        <rect className="zed" x="36" y="6"  width="6" height="6" rx="2" fill="var(--dark-green)" opacity="0"/>
         {/* Head (2×2) */}
         <rect x="30" y="18" {...R}/>
         <rect x="36" y="18" {...R}/>

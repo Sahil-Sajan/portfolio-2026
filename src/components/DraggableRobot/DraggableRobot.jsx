@@ -7,29 +7,29 @@ const LegWiggleMan = ({ flip }) => (
     width="36" height="48" viewBox="0 0 36 48" fill="none"
     style={{ display: "block", transform: flip ? "scaleX(-1)" : "none" }}
   >
-    <rect x="12" y="0"  width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="18" y="0"  width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="24" y="0"  width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="12" y="6"  width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="18" y="6"  width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="24" y="6"  width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="18" y="12" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="12" y="18" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="18" y="18" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="24" y="18" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="30" y="18" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="6"  y="24" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="18" y="24" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="30" y="24" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="12" y="30" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="18" y="30" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="24" y="30" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="6"  y="36" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect x="24" y="36" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect className="dr-fl"  y="42"    width="6" height="6" rx="2" fill="#00A084" fillOpacity="0"/>
-    <rect className="dr-fld" x="6"  y="42" width="6" height="6" rx="2" fill="#00A084"/>
-    <rect className="dr-fr"  x="18" y="42" width="6" height="6" rx="2" fill="#00A084" fillOpacity="0"/>
-    <rect className="dr-frd" x="24" y="42" width="6" height="6" rx="2" fill="#00A084"/>
+    <rect x="12" y="0"  width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="18" y="0"  width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="24" y="0"  width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="12" y="6"  width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="18" y="6"  width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="24" y="6"  width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="18" y="12" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="12" y="18" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="18" y="18" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="24" y="18" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="30" y="18" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="6"  y="24" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="18" y="24" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="30" y="24" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="12" y="30" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="18" y="30" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="24" y="30" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="6"  y="36" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect x="24" y="36" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect className="dr-fl"  y="42"    width="6" height="6" rx="2" fill="var(--dark-green)" fillOpacity="0"/>
+    <rect className="dr-fld" x="6"  y="42" width="6" height="6" rx="2" fill="var(--dark-green)"/>
+    <rect className="dr-fr"  x="18" y="42" width="6" height="6" rx="2" fill="var(--dark-green)" fillOpacity="0"/>
+    <rect className="dr-frd" x="24" y="42" width="6" height="6" rx="2" fill="var(--dark-green)"/>
   </svg>
 );
 

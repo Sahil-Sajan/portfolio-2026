@@ -559,6 +559,11 @@
   border: 3px solid var(--off-teal);
 }
 
+:global([data-theme="dark"]) .right .fourth .cardWrapper {
+  background-color: #0D0D0D;
+  border-color: #1E1E1E;
+}
+
 .homeCardDeck {
   position: relative;
   width: 100%;
