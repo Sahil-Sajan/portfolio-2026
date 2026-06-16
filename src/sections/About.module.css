@@ -36,7 +36,7 @@
 .leftFirstS1 {
   min-width: 94px;
   max-width: 94px;
-  height: 440px;
+  height: 100%;
   background-color: var(--off-teal);
 }
 

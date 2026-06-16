@@ -7,12 +7,12 @@ import {
 } from "react";
 import { useButtonSounds } from "../hooks/useButtonSounds";
 import styles from "./About.module.css";
-import lego_210 from "/lego_210.svg";
+import SpaceShooter from "../components/SpaceShooter/SpaceShooter.jsx";
 import star from "/star.svg";
 import checked from "/checked.svg";
 import unchecked from "/unchecked.svg";
 import PercentageSlider from "../components/PercentageSlider/PercentageSlider.jsx";
-import AnimatedLegWiggle from "../components/AnimatedLegWiggle.jsx";
+import DraggableRobot from "../components/DraggableRobot/DraggableRobot.jsx";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -92,7 +92,6 @@ const About = forwardRef((_, ref) => {
   const playClick = () => _playClick(3);
   const [resumeHovered, setResumeHovered] = useState(false);
   const cellRef = useRef(null);
-  const legRef = useRef(null);
   const grassTargetRef1 = useRef(null);
   const grassTargetRef3 = useRef(null);
   const grassTargetRef4 = useRef(null);
@@ -112,37 +111,28 @@ const About = forwardRef((_, ref) => {
 
 
 
-  useEffect(() => {
-    if (!cellRef.current) return;
-    const trigger = ScrollTrigger.create({
-      trigger: cellRef.current,
-      start: "bottom bottom",
-      onEnter: () => legRef.current?.play(),
-      once: true,
-    });
-    return () => trigger.kill();
-  }, []);
 
   const handleEnter = useCallback(() => setResumeHovered(true), []);
   const handleLeave = useCallback(() => setResumeHovered(false), []);
 
   const currentEnjoy = [
-    { text: "Films, Severance & The Office", span: "[ US ]" },
-    { text: "Death Stranding 2" },
-    { text: "Chainsaw Man" },
-    { text: "Learning French" },
-    { text: "Lego Kits" },
-    { text: "Gym" },
-    { text: "The color green" },
+    { text: "Gym & Strength Training" },
+    { text: "MMA" },
+    { text: "Gaming sessions" },
+    { text: "Building websites with Next.js" },
+    { text: "Late-night productivity sessions" },
+    { text: "Listening to music" },
+    { text: "Cinematic Movies" },
+    { text: "Being a Cinephile" },
   ];
 
   const goals = [
-    { text: "Design a VR experience", checked: true },
-    { text: "Play Death Stranding 2", checked: true },
-    { text: "Mod a Casio watch", checked: true },
-    { text: "Finish reading - Crime & Punishment" },
-    { text: "Pursue a HCI Master's" },
-    { text: "Learn Cardistry" },
+    { text: "Backend with Node.js and Express.js", checked: true },
+    { text: "React Native development", checked: true },
+    { text: "Building full-stack projects", checked: true },
+    { text: "Cloud AWS and deployment skills" },
+    { text: "Pursue a Master’s abroad" },
+    { text: "Not letting intrusive thoughts win" }
   ];
 
   const experiences = [
@@ -227,24 +217,29 @@ const About = forwardRef((_, ref) => {
 
         <div className={styles.left}>
           <div className={styles.leftFirst} ref={cellRef}>
-            <img
-              className={styles.leftFirstS1}
-              src={lego_210}
-              alt=""
-            />
+            <div className={styles.leftFirstS1}>
+              <SpaceShooter />
+            </div>
             <div className={styles.aboutImgWrapper}>
               <PercentageSlider />
             </div>
             <div className={styles.leftFirstCell}>
-              <AnimatedLegWiggle ref={legRef} />
+              {/* bottom-left — original position, mirrored */}
+              <DraggableRobot style={{ left: 0, bottom: -13 }} flip />
+              {/* top-left */}
+              <DraggableRobot style={{ left: 0, top: 10 }} />
+              {/* top-right */}
+              <DraggableRobot style={{ right: 0, top: 10 }} flip />
+              {/* bottom-right */}
+              <DraggableRobot style={{ right: 0, bottom: -13 }} />
             </div>
           </div>
 
           <a
-            href="https://drive.google.com/file/d/12dYdJq4Q5KDVlghvON27KRiGc8sl-ZMm/view?usp=sharing"
+            href="https://drive.google.com/file/d/1_Wid52EDb-vXa1mFI-EX7_cqGQpFDzzP/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="View Kashyap's resume (PDF, opens in new tab)"
+            aria-label="View Sahil's resume (PDF, opens in new tab)"
             className={styles.second}
             onMouseEnter={() => { setResumeHovered(true); playHover(); }}
             onMouseLeave={() => setResumeHovered(false)}
@@ -253,7 +248,7 @@ const About = forwardRef((_, ref) => {
           >
             <AnimatedArrow isActive={!resumeHovered} />
             <p>
-              VIEW KASHYAP'S <span>RESUME</span>
+              VIEW SAHIL'S <span>RESUME</span>
             </p>
             <AnimatedArrow isActive={resumeHovered} />
           </a>

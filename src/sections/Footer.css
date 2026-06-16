@@ -98,6 +98,7 @@ footer > .middle > .right-wrapper > .right-subwrapper > .right {
         padding: 0;
         font-weight: 600;
         color: var(--off-black);
+        animation: finPulse 5s ease-in-out infinite;
     }
 
     p.fin span {
@@ -147,6 +148,12 @@ footer > .middle > .left {
         display: block;
         width: 100%;
     }
+}
+
+@keyframes finPulse {
+    0%   { opacity: 1;    letter-spacing: 0.01em; }
+    50%  { opacity: 0.45; letter-spacing: 0.06em; }
+    100% { opacity: 1;    letter-spacing: 0.01em; }
 }
 
 @media screen and (max-width: 1200px) {

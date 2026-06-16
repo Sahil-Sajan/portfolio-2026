@@ -10,7 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Contact = forwardRef(({}, ref) => {
+const Contact = forwardRef(({ }, ref) => {
   const { playHover: _playHover, playClick: _playClick } = useButtonSounds();
   const playHover = () => _playHover(3);
   const playClick = () => _playClick(3);
@@ -117,15 +117,13 @@ const Contact = forwardRef(({}, ref) => {
               </span>
             </p>
             <p className={styles.firstH3}>
-              I'm always up for a chat, about Chainsaw Man's
-              nihilist worldview or your next project. You can
-              reach me at..
+              I’m always up for a chat whether it’s MMA techniques, cinematic films, or your next Web project. You can reach me at..
             </p>
           </div>
 
           <a
-            href="mailto:kashyap.rayas@gmail.com"
-            aria-label="Email Kashyap at kashyap.rayas@gmail.com"
+            href="mailto:sahilsajjan18@gmail.com"
+            aria-label="Email Sahil at sahilsajjan18@gmail.com"
             className={styles.second}
             onMouseEnter={() => { setContactHovered(true); playHover(); }}
             onMouseLeave={() => setContactHovered(false)}
@@ -134,7 +132,7 @@ const Contact = forwardRef(({}, ref) => {
           >
             <AnimatedArrow isActive={!contactHovered} />
             <p>
-              KASHYAP.RAYAS
+              SAHILSAJJAN18
               <span>@GMAIL.COM</span>
             </p>
             <AnimatedArrow isActive={contactHovered} />
