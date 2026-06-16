@@ -15,7 +15,6 @@ import { useGSAP } from "@gsap/react";
 import { useButtonSounds } from "../hooks/useButtonSounds";
 import styles from "./Home.module.css";
 import Clock from "../components/Clock";
-import lego_44 from "/lego_44.svg";
 import AnimatedArrow from "../components/AnimatedArrow";
 import AnimatedDownwardArrow from "../components/AnimatedDownwardArrow";
 import Metric from "../components/metric";
@@ -23,6 +22,7 @@ import Hero from "../components/Hero/Hero";
 import AnimatedMan from "../components/AnimatedMan";
 import GrassOverlay from "../components/GrassOverlay";
 import LegoStreakCanvas from "../components/LegoStreakCanvas";
+import SpotifyPlayer from "../components/SpotifyPlayer/SpotifyPlayer";
 import { useCardCount } from "../hooks/useCardCount";
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
@@ -396,7 +396,6 @@ const Home = forwardRef(
     const grassTargetRef1 = useRef(null);
     const grassTargetRef2 = useRef(null);
     const grassTargetRef3 = useRef(null);
-    const grassTargetRef4 = useRef(null);
 
     const cardDeckRef = useRef(null);
     const recentCanvasRef = useRef(null);
@@ -973,17 +972,11 @@ const Home = forwardRef(
               )}
             </div>
 
-            {/* LEGO SECTION */}
-            <div className={styles.third} ref={grassTargetRef4}>
-              <div className={styles.s2}></div>
-              <img className={styles.s3} src={lego_44} alt="" />
-              <div className={styles.s4}></div>
-              <div className={styles.s1}></div>
+            {/* SPOTIFY PLAYER */}
+            <div className={styles.spotifySection}>
+              <SpotifyPlayer />
             </div>
-            <GrassOverlay
-              isLoaded={isLoaded}
-              targetRef={grassTargetRef4}
-            />
+
 
             {/* CARD DECK */}
             <div className={styles.fourth}>
