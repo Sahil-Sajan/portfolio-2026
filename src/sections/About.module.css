@@ -53,10 +53,9 @@
   background-color: var(--off-white);
   border-radius: 9px;
   box-sizing: border-box;
-  padding: 21px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 18px;
 }
 
 .second {

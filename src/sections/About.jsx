@@ -8,11 +8,11 @@ import {
 import { useButtonSounds } from "../hooks/useButtonSounds";
 import styles from "./About.module.css";
 import SpaceShooter from "../components/SpaceShooter/SpaceShooter.jsx";
+import SnakeGame from "../components/SnakeGame/SnakeGame.jsx";
 import star from "/star.svg";
 import checked from "/checked.svg";
 import unchecked from "/unchecked.svg";
-import PercentageSlider from "../components/PercentageSlider/PercentageSlider.jsx";
-import DraggableRobot from "../components/DraggableRobot/DraggableRobot.jsx";
+import TerminalBio from "../components/TerminalBio/TerminalBio.jsx";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -21,62 +21,6 @@ import AnimatedArrow from "../components/AnimatedArrow.jsx";
 import RevealText from "../components/RevealText.jsx";
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
-
-const PixelFootball = ({ ballRef }) => (
-  <div
-    ref={ballRef}
-    style={{
-      position: "absolute",
-      left: "calc(50% - 7px)",
-      bottom: 14,
-      width: 14,
-      height: 14,
-      pointerEvents: "none",
-      zIndex: 10,
-    }}
-  >
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-      {/* Row 0 — top edge */}
-      <rect x="4"  y="0"  width="4" height="4" fill="#F0EAD6"/>
-      <rect x="8"  y="0"  width="4" height="4" fill="#F0EAD6"/>
-      <rect x="12" y="0"  width="4" height="4" fill="#F0EAD6"/>
-      <rect x="16" y="0"  width="4" height="4" fill="#F0EAD6"/>
-      {/* Row 1 */}
-      <rect x="0"  y="4"  width="4" height="4" fill="#F0EAD6"/>
-      <rect x="4"  y="4"  width="4" height="4" fill="#1A1A1A"/>
-      <rect x="8"  y="4"  width="4" height="4" fill="#F0EAD6"/>
-      <rect x="12" y="4"  width="4" height="4" fill="#F0EAD6"/>
-      <rect x="16" y="4"  width="4" height="4" fill="#1A1A1A"/>
-      <rect x="20" y="4"  width="4" height="4" fill="#F0EAD6"/>
-      {/* Row 2 */}
-      <rect x="0"  y="8"  width="4" height="4" fill="#F0EAD6"/>
-      <rect x="4"  y="8"  width="4" height="4" fill="#F0EAD6"/>
-      <rect x="8"  y="8"  width="4" height="4" fill="#1A1A1A"/>
-      <rect x="12" y="8"  width="4" height="4" fill="#1A1A1A"/>
-      <rect x="16" y="8"  width="4" height="4" fill="#F0EAD6"/>
-      <rect x="20" y="8"  width="4" height="4" fill="#F0EAD6"/>
-      {/* Row 3 */}
-      <rect x="0"  y="12" width="4" height="4" fill="#F0EAD6"/>
-      <rect x="4"  y="12" width="4" height="4" fill="#F0EAD6"/>
-      <rect x="8"  y="12" width="4" height="4" fill="#1A1A1A"/>
-      <rect x="12" y="12" width="4" height="4" fill="#1A1A1A"/>
-      <rect x="16" y="12" width="4" height="4" fill="#F0EAD6"/>
-      <rect x="20" y="12" width="4" height="4" fill="#F0EAD6"/>
-      {/* Row 4 */}
-      <rect x="0"  y="16" width="4" height="4" fill="#F0EAD6"/>
-      <rect x="4"  y="16" width="4" height="4" fill="#1A1A1A"/>
-      <rect x="8"  y="16" width="4" height="4" fill="#F0EAD6"/>
-      <rect x="12" y="16" width="4" height="4" fill="#F0EAD6"/>
-      <rect x="16" y="16" width="4" height="4" fill="#1A1A1A"/>
-      <rect x="20" y="16" width="4" height="4" fill="#F0EAD6"/>
-      {/* Row 5 — bottom edge */}
-      <rect x="4"  y="20" width="4" height="4" fill="#F0EAD6"/>
-      <rect x="8"  y="20" width="4" height="4" fill="#F0EAD6"/>
-      <rect x="12" y="20" width="4" height="4" fill="#F0EAD6"/>
-      <rect x="16" y="20" width="4" height="4" fill="#F0EAD6"/>
-    </svg>
-  </div>
-);
 
 const ListItem = ({ icon, text, span }) => (
   <div className={styles.item}>
@@ -152,48 +96,6 @@ const About = forwardRef((_, ref) => {
   const grassTargetRef3 = useRef(null);
   const grassTargetRef4 = useRef(null);
   const headingRef = useRef(null);
-  const ballRef = useRef(null);
-
-  // Ball moves randomly between 4 robot corners
-  useEffect(() => {
-    const ball = ballRef.current;
-    if (!ball) return;
-    let running = true;
-    let totalRot = 0;
-
-    const kick = () => {
-      if (!running || !ball.parentElement) return;
-      const h = ball.parentElement.offsetHeight;
-      const corners = [
-        { x: -46, y: -(h - 52) },  // top-left
-        { x:  46, y: -(h - 52) },  // top-right
-        { x: -46, y: 0 },           // bottom-left
-        { x:  46, y: 0 },           // bottom-right
-      ];
-      const curX = gsap.getProperty(ball, "x");
-      const curY = gsap.getProperty(ball, "y");
-      // pick a random corner that differs meaningfully from current
-      let pick;
-      do { pick = corners[Math.floor(Math.random() * 4)]; }
-      while (Math.abs(pick.x - curX) < 10 && Math.abs(pick.y - curY) < 10);
-
-      const dist = Math.hypot(pick.x - curX, pick.y - curY);
-      totalRot += (pick.x > curX ? 1 : -1) * (dist / 6) * 15;
-
-      gsap.to(ball, {
-        x: pick.x, y: pick.y,
-        rotation: totalRot,
-        duration: 0.25 + dist / 260,
-        ease: "power2.inOut",
-        onComplete: () => {
-          if (running) gsap.delayedCall(0.15 + Math.random() * 0.35, kick);
-        },
-      });
-    };
-
-    gsap.delayedCall(0.4, kick);
-    return () => { running = false; gsap.killTweensOf(ball); };
-  }, []);
 
   useEffect(() => {
     if (!headingRef.current) return;
@@ -319,19 +221,10 @@ const About = forwardRef((_, ref) => {
               <SpaceShooter />
             </div>
             <div className={styles.aboutImgWrapper}>
-              <PercentageSlider />
+              <TerminalBio />
             </div>
             <div className={styles.leftFirstCell}>
-              {/* bottom-left */}
-              <DraggableRobot style={{ left: 0, bottom: -13 }} flip />
-              {/* top-left */}
-              <DraggableRobot style={{ left: 0, top: 10 }} />
-              {/* top-right */}
-              <DraggableRobot style={{ right: 0, top: 10 }} flip />
-              {/* bottom-right */}
-              <DraggableRobot style={{ right: 0, bottom: -13 }} />
-              {/* Football */}
-              <PixelFootball ballRef={ballRef} />
+              <SnakeGame />
             </div>
           </div>
 
