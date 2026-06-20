@@ -2,7 +2,7 @@
     "content": [
         {
             "type": "img",
-            "url": "/project_imgs/sentinel.png",
+            "url": "/project_imgs/sentinel (2).png",
             "caption": ""
         },
         {
@@ -19,7 +19,7 @@
         },
         {
             "type": "img",
-            "url": "/project_imgs/sw_2.webp",
+            "url": "/project_imgs/s1 (1).png",
             "caption": "The main dashboard surfaces the most important activity at a glance"
         },
         {
@@ -30,28 +30,28 @@
         },
         {
             "type": "img",
-            "url": "/project_imgs/sw_3.webp",
+            "url": "/project_imgs/s1 (2).png",
             "caption": "Role-based views ensure each user sees only what is relevant to them"
         },
         {
             "type": "img",
-            "url": "/project_imgs/sw_4.webp",
+            "url": "/project_imgs/sentinel 2.png",
             "caption": "App approval and blocking flows designed to be resolved in under 10 seconds"
         },
         {
             "type": "bigtext",
-            "text1": "ANIMATIONS",
-            "text2": "Motion that builds trust",
-            "text3": "I integrated Framer Motion throughout the platform to deliver smooth page transitions and micro-animations. In a product built around safety and monitoring, smooth, confident motion signals reliability. Abrupt or janky transitions would undermine user trust — so every state change, panel open, and data update was animated deliberately."
+            "text1": "GEOFENCING",
+            "text2": "Safety that follows your child into the real world",
+            "text3": "One of Sentinel Kids' most critical safety features is geofencing — parents can mark a safe zone on the map, and the moment a child steps outside that boundary, an instant alert is pushed to the parent. No delay, no manual checking. The interface lets parents draw, resize, and name zones in seconds, and the alert system is designed to cut through notification noise when it matters most."
         },
         {
             "type": "img",
-            "url": "/project_imgs/sw_5.webp",
-            "caption": "Animated state transitions keep the interface feeling responsive and alive"
+            "url": "/public/project_imgs/Untitled design (3).png",
+            "caption": "Geofence zone setup — parents define safe areas and get alerted the moment a child leaves"
         },
         {
             "type": "img",
-            "url": "/project_imgs/sw_6.webp",
+            "url": "/public/project_imgs/Untitled design (4).png",
             "caption": "Live activity feed with categorised content alerts"
         },
         {
@@ -62,12 +62,12 @@
         },
         {
             "type": "img",
-            "url": "/project_imgs/sw_7.webp",
+            "url": "/public/project_imgs/Untitled design (5).png",
             "caption": "Content category controls — parents can allow or restrict by type"
         },
         {
             "type": "img",
-            "url": "/project_imgs/sw_8.webp",
+            "url": "/public/project_imgs/Untitled design (6).png",
             "caption": "Device-level settings and notification preferences"
         },
         {
