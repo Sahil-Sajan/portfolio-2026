@@ -1013,7 +1013,7 @@ const Hero = ({ isLoaded }) => {
                   />
                 </g>
 
-                <image href="/sahil.svg" x="0" y="0" width="375" height="600" />
+                <image href="/sahil1.svg" x="-30" y="-70" width="450" height="690" />
 
                 <clipPath id="fishermanclip">
                   <rect x="0" y="0" width="210px" height="108" />
