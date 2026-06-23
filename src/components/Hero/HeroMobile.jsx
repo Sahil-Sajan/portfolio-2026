@@ -599,7 +599,7 @@ const Hero = ({ isLoaded }) => {
     >
       <div className={styles["hero-text"]}>
         <div className={styles["wrapper-top"]}>
-          <h1 style={titleStyle}>Product</h1>
+          <h1 style={titleStyle}>Fullstack</h1>
           <img
             className={styles["b1"]}
             src={box_anchor}
@@ -625,7 +625,7 @@ const Hero = ({ isLoaded }) => {
             aria-hidden="true"
           />
         </div>
-        <h1>Designer</h1>
+        <h1>Developer</h1>
       </div>
 
       <svg

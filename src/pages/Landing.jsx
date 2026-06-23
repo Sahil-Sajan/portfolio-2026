@@ -10,6 +10,7 @@ import Work from '../sections/Work.jsx';
 import About from '../sections/About.jsx';
 import Contact from '../sections/Contact.jsx';
 import Footer from '../sections/Footer.jsx';
+import LampWire from '../components/LampWire/LampWire.jsx';
 
 const Landing = ({isLoaded, onProjectSelect, isIncomingTransition, onModifierDeckSelect, isPreloaderDone, returnedFrom, pendingScrollTarget, onScrollTargetConsumed}) => {
     const [linkHovered, setLinkHovered] = useState(false);
@@ -111,6 +112,7 @@ const Landing = ({isLoaded, onProjectSelect, isIncomingTransition, onModifierDec
 
     return (
         <div id="main-content" style={currentStyle}>
+            {isMobile && <LampWire />}
             <HeaderComponent setLinkHovered={setLinkHovered} lenis={lenis} isLoaded={isPreloaderDone} />
             <main>
                 <HomeComponent linkHovered={linkHovered} isLoaded={isPreloaderDone} isLoadedforHero={!isIncomingTransition && isPreloaderDone} handleProjectSelect={onProjectSelect} ref={homeRef} onModifierDeckSelect={onModifierDeckSelect} returnedFrom={returnedFrom}/>
