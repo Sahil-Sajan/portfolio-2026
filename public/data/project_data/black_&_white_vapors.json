@@ -2,7 +2,7 @@
     "content": [
         {
             "type": "img",
-            "url": "/project_imgs/nc_1.webp",
+            "url": "/project_imgs/b1.png",
             "caption": ""
         },
         {
@@ -19,30 +19,42 @@
         },
         {
             "type": "img",
-            "url": "/project_imgs/nc_2.webp",
-            "caption": "Storefront — product catalogue with search and category filtering"
+            "url": "/project_imgs/b2.png",
+            "caption": "Landing page — full product catalogue with search and category filtering"
         },
         {
             "type": "bigtext",
-            "text1": "THE STOREFRONT",
-            "text2": "Browse, filter, checkout",
-            "text3": "The storefront was built for clean, fast product browsing — search, category filtering, product detail pages, cart, and a streamlined checkout. I applied mobile-first responsive design throughout, with performance optimisations including lazy loading and image compression keeping the experience fast on any connection."
+            "text1": "LANDING PAGE",
+            "text2": "Products front and centre from the first scroll",
+            "text3": "The landing page is built around the product catalogue — every item is surfaced immediately without friction. Products are displayed in a clean grid with category filters and a live search bar, letting users drill down to exactly what they want in seconds. The hero section leads into the catalogue naturally, keeping the path from landing to browsing as short as possible. Featured and new arrivals are promoted at the top to guide first-time visitors toward high-interest inventory."
         },
         {
             "type": "img",
-            "url": "/project_imgs/nc_3.webp",
-            "caption": "Product detail page with cart integration and variant selection"
+            "url": "/project_imgs/b5.png",
+            "caption": "Product detail page — variants, description, and add-to-cart"
         },
         {
             "type": "bigtext",
-            "text1": "THE ADMIN",
-            "text2": "Real-time control for a one-person operation",
-            "text3": "The custom admin dashboard was built for the client to operate independently after handoff — no technical knowledge required. It covers real-time inventory tracking, order status management, and product CRUD. I designed the admin interface to surface the most critical information first and make common operations — updating stock, fulfilling orders — achievable in as few clicks as possible."
+            "text1": "PRODUCT DETAIL PAGE",
+            "text2": "Everything needed to make the decision",
+            "text3": "The product detail page is designed to close the gap between browsing and buying. It presents the full product image gallery, detailed description, flavour and nicotine variant selectors, stock status, and a prominent add-to-cart action — all in a single uncluttered view. Variant selection updates pricing and availability in real time, and the cart integrates without a page reload so users stay in context."
+        },
+        {
+            "type": "bigtext",
+            "text1": "CHECKOUT PAGE",
+            "text2": "Straight line from cart to confirmation",
+            "text3": "The checkout flow was designed to remove every unnecessary step between cart and order completion. It covers shipping details, delivery method selection, and order summary in a single-page layout — no multi-step wizard, no account requirement. Input validation runs inline so users correct errors immediately rather than at submission. On completion, the order is confirmed with a clear summary and triggers the admin dashboard update in real time."
+        },
+        {
+            "type": "bigtext",
+            "text1": "MOBILE RESPONSIVE",
+            "text2": "Built mobile-first, refined for every screen",
+            "text3": "The entire storefront was built mobile-first — layouts, typography, tap targets, and navigation were all designed for small screens before scaling up to desktop. The product grid reflows from a single column on mobile to a multi-column layout on wider viewports. The cart and checkout adapt their layout so the order summary stays visible without scrolling on desktop, while stacking cleanly on mobile. Performance was kept tight throughout with lazy-loaded images and compressed assets ensuring fast load times on mobile connections."
         },
         {
             "type": "img",
-            "url": "/project_imgs/nc_4.webp",
-            "caption": "Admin dashboard — inventory, orders, and product management in one view"
+            "url": "/project_imgs/b3.png",
+            "caption": "Mobile responsive design — storefront optimised across all screen sizes"
         },
         {
             "type": "bigtext",

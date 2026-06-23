@@ -603,7 +603,7 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
             className={"project locked"}
             role="button"
             tabIndex={0}
-            aria-label="Movie Colab VR – case study coming soon"
+            aria-label="Nortra AI – case study coming soon"
             aria-disabled="true"
             onMouseEnter={playHover}
             onClick={() => { playClick(2); console.log("It ain't here yet!"); }}
@@ -615,26 +615,25 @@ const Work = forwardRef(({ handleProjectSelect }, ref) => {
                 alt=""
                 style={{ paddingRight: "6px", paddingTop: "2px" }}
               />
-              <h3>MOVIE COLAB VR</h3>
+              <h3>NORTRA AI</h3>
             </div>
             <div className="description locked">
               <p>
-                Case study coming soon! VR screening room for remote film
-                review
+                Case study coming soon! AI-powered response and operations layer for pre-deal CRM workflows
               </p>
             </div>
             <div className="tags">
               <div className="tag">
                 <img src={star} alt="" />
-                Virtual Reality
+                Web App
               </div>
               <div className="tag">
                 <img src={star} alt="" />
-                AI Integrated
+                AI Operations
               </div>
               <div className="tag">
                 <img src={star} alt="" />
-                Film Production
+                SaaS
               </div>
             </div>
           </div>

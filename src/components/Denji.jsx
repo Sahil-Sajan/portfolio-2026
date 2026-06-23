@@ -3,8 +3,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import denjiBody from "/denji-body.svg";
-import denjiHand from "/denji-hand.svg";
+
 import { useTheme } from "../context/ThemeContext";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
@@ -77,9 +76,9 @@ const Denji = () => {
   const wrapperStyle = {
     position: "relative",
     zIndex: 6,
-    bottom: "-60px",
-    aspectRatio: "378 / 313",
-    ...(isMobile ? { width: "100%" } : { height: "100%" }),
+    bottom: "-200px",
+    aspectRatio: "1024 / 1536",
+    ...(isMobile ? { width: "100%" } : { height: "150%" }),
   };
 
   const layerStyle = {
@@ -218,8 +217,7 @@ const Denji = () => {
   return (
     <div style={containerStyle} ref={container}>
       <div style={wrapperStyle} ref={denjiRef} id="denji">
-        <img src={denjiBody} style={layerStyle} alt="Denji" />
-        <img src={denjiHand} style={layerStyle} ref={handRef} alt="" aria-hidden="true" />
+        <img src="/sahil3.png" style={layerStyle} alt="Sahil" />
       </div>
       {rectConfigs.map((style, i) => (
         <div

@@ -11,16 +11,6 @@
             ]
         },
         {
-            "name": "NORTRA AI",
-            "description": "An AI-powered response and operations layer acting as a system of action for pre-deal CRM workflows",
-            "img": "/project_imgs/mc_1.webp",
-            "tags": [
-                "Web App",
-                "AI Operations",
-                "SaaS"
-            ]
-        },
-        {
             "name": "JAYAKHUB",
             "description": "A multi-tenant admin platform coordinating operations, finance, drivers, restaurants, and RBAC for a food delivery ecosystem",
             "img": "/project_imgs/j1.png",
@@ -43,7 +33,7 @@
         {
             "name": "BLACK & WHITE VAPORS",
             "description": "An end-to-end e-commerce platform storefront equipped with real-time inventory and order management tracking",
-            "img": "/project_imgs/nc_1.webp",
+            "img": "/project_imgs/b1.png",
             "tags": [
                 "Freelance",
                 "Web App",

@@ -12,45 +12,78 @@ const SEQUENCE = [
   },
   {
     cmd: "sahil.role",
-    out: ["'Frontend Developer  &  UI Engineer'"],
+    out: ["'Frontend Developer & UI Engineer'"],
+  },
+  {
+    cmd: "sahil.experience",
+    out: ["'1+ year professional • 2+ years hands-on development'"],
   },
   {
     cmd: "sahil.skills",
     out: [
-      "[ 'React',      'Next.js',   'TypeScript',",
-      "  'GSAP',       'Tailwind',  'Framer',",
-      "  'Node.js',    'Figma',     'CSS / SCSS' ]",
+      "[ 'Next.js',     'React.js',   'TypeScript',",
+      "  'JavaScript',  'Tailwind',   'Framer Motion',",
+      "  'Shadcn/UI',   'Node.js',    'Express.js',",
+      "  'React Query', 'Zustand',    'Figma' ]",
     ],
   },
   {
     cmd: "sahil.job",
     out: [
       "{ company: 'Samarix',",
-      "  role:    'UI/UX Engineer',",
-      "  since:    2024 }",
+      "  role:    'Frontend Developer',",
+      "  since:   2025 }",
+    ],
+  },
+  {
+    cmd: "sahil.projects",
+    out: [
+      "[ 'Sentinel Kids',",
+      "  'Nortra',",
+      "  'Jayakhub',",
+      "  'Roos Brothers',",
+      "  'Black & White Vapors' ]",
+    ],
+  },
+  {
+    cmd: "sahil.specializesIn",
+    out: [
+      "[ 'Scalable Web Apps',",
+      "  'Dashboard Development',",
+      "  'UI/UX Engineering',",
+      "  'Performance Optimization',",
+      "  'Motion Design' ]",
+    ],
+  },
+  {
+    cmd: "sahil.education",
+    out: [
+      "{ degree: 'Bachelor of Information Technology',",
+      "  university: 'University of Sindh',",
+      "  graduation: 2027 }",
     ],
   },
   {
     cmd: "sahil.location",
-    out: ["'Hyderabad, Pakistan'"],
+    out: ["'Hyderabad, Sindh, Pakistan'"],
   },
   {
     cmd: "sahil.status",
-    out: ["'open to work  ✓'"],
+    out: ["'Open to Work ✓'"],
   },
 ];
 
-const CHAR_MS   = 38;
-const OUT_MS    = 80;
+const CHAR_MS = 38;
+const OUT_MS = 80;
 const CMD_PAUSE = 480;
 const LOOP_PAUSE = 2600;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export default function TerminalBio() {
-  const [lines, setLines]   = useState([]);
+  const [lines, setLines] = useState([]);
   const [cursor, setCursor] = useState(false);
-  const bodyRef             = useRef(null);
+  const bodyRef = useRef(null);
 
   useEffect(() => {
     // Local flag — isolated per effect call, immune to StrictMode double-invoke
@@ -108,8 +141,8 @@ export default function TerminalBio() {
   return (
     <div className={styles.terminal}>
       <div className={styles.header}>
-        <span className={`${styles.dot} ${styles.red}`}   />
-        <span className={`${styles.dot} ${styles.yellow}`}/>
+        <span className={`${styles.dot} ${styles.red}`} />
+        <span className={`${styles.dot} ${styles.yellow}`} />
         <span className={`${styles.dot} ${styles.green}`} />
         <span className={styles.title}>node  —  sahil.js</span>
       </div>
