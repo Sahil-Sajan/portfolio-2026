@@ -13,6 +13,7 @@ import star from "/star.svg";
 import checked from "/checked.svg";
 import unchecked from "/unchecked.svg";
 import TerminalBio from "../components/TerminalBio/TerminalBio.jsx";
+import TerminalBioMobile from "../components/TerminalBioMobile/TerminalBioMobile.jsx";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -221,7 +222,8 @@ const About = forwardRef((_, ref) => {
               <SpaceShooter />
             </div>
             <div className={styles.aboutImgWrapper}>
-              <TerminalBio />
+              <div className={styles.desktopOnly}><TerminalBio /></div>
+              <div className={styles.mobileOnly}><TerminalBioMobile /></div>
             </div>
             <div className={styles.leftFirstCell}>
               <SnakeGame />

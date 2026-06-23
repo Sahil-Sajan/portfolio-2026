@@ -668,7 +668,8 @@ const Hero = ({ isLoaded }) => {
               fill="#006352"
             />
             <g id="parallax-group" ref={parallaxGroupRef}>
-              <g id="Face">
+              <image href="/sahil1.svg" x="0" y="-44" width="287" height="430" />
+              <g id="Face" display="none">
                 <path
                   id="Vector 281"
                   d="M32.9554 291.197L113.094 263.078L202.02 264.484L292 333.727H8L13.6238 312.638C16.998 299.984 27.9175 293.072 32.9554 291.197Z"

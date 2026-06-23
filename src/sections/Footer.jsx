@@ -1,12 +1,53 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import "./Footer.css";
 import { useButtonSounds } from "../hooks/useButtonSounds";
 import AnimatedDownwardArrowSmall from "../components/AnimatedDownwardArrowSmall";
 import LinkButtonFooter from "../components/LinkButton/LinkButtonFooter";
 import FooterStudGrid from "../components/FooterStudGrid/FooterStudGrid";
 
-// Pre-compute year once instead of on every render
 const CURRENT_YEAR = new Date().getFullYear();
+
+const FULL_TEXT = "FI AMANILLAH";
+const TYPE_MS = 120;
+const DELETE_MS = 70;
+const PAUSE_AFTER_TYPE = 2200;
+const PAUSE_AFTER_DELETE = 600;
+
+function useTypingEffect() {
+  const [displayed, setDisplayed] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+    async function run() {
+      while (!cancelled) {
+        for (let i = 1; i <= FULL_TEXT.length; i++) {
+          if (cancelled) return;
+          setDisplayed(FULL_TEXT.slice(0, i));
+          await sleep(TYPE_MS);
+        }
+        await sleep(PAUSE_AFTER_TYPE);
+        for (let i = FULL_TEXT.length - 1; i >= 0; i--) {
+          if (cancelled) return;
+          setDisplayed(FULL_TEXT.slice(0, i));
+          await sleep(DELETE_MS);
+        }
+        await sleep(PAUSE_AFTER_DELETE);
+      }
+    }
+
+    const cursorInterval = setInterval(() => setShowCursor((v) => !v), 530);
+    run();
+    return () => {
+      cancelled = true;
+      clearInterval(cursorInterval);
+    };
+  }, []);
+
+  return { displayed, showCursor };
+}
 
 const Footer = ({ inProject = false, lenis, isMobile, onBackWithScroll }) => {
   const { playHover: _playHover, playClick: _playClick } = useButtonSounds();
@@ -17,6 +58,10 @@ const Footer = ({ inProject = false, lenis, isMobile, onBackWithScroll }) => {
     () => (inProject ? "SCROLL TO TOP" : "SCROLL TO WORK"),
     [inProject]
   );
+
+  const { displayed, showCursor } = useTypingEffect();
+  const finFirst = isMobile ? "FI " : displayed.slice(0, 3);
+  const finRest  = isMobile ? "AMANILLAH" : displayed.slice(3);
 
 
   return (
@@ -70,7 +115,9 @@ const Footer = ({ inProject = false, lenis, isMobile, onBackWithScroll }) => {
                 <p className="tagline">ALL LEFTS UNRESERVED</p>
               </div>
               <p className="fin" aria-hidden="true">
-                FI <span className="Fin">AMANILLAH</span><span></span>
+                <span className="FinFirst">{finFirst}</span>
+                <span className="Fin">{finRest}</span>
+                {!isMobile && <span className="cursor" style={{ opacity: showCursor ? 1 : 0 }}>▌</span>}
               </p>
             </div>
           </div>

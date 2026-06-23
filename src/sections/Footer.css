@@ -98,7 +98,6 @@ footer > .middle > .right-wrapper > .right-subwrapper > .right {
         padding: 0;
         font-weight: 600;
         color: var(--off-black);
-        animation: finPulse 5s ease-in-out infinite;
     }
 
     p.fin span {
@@ -150,11 +149,6 @@ footer > .middle > .left {
     }
 }
 
-@keyframes finPulse {
-    0%   { opacity: 1;    letter-spacing: 0.01em; }
-    50%  { opacity: 0.45; letter-spacing: 0.06em; }
-    100% { opacity: 1;    letter-spacing: 0.01em; }
-}
 
 @media screen and (max-width: 1200px) {
 
@@ -208,5 +202,28 @@ footer > .middle > .left {
         align-items: flex-start;
         gap: 3px;
         height: max-content;
+    }
+
+    footer p.fin {
+        font-size: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+    footer p.fin .FinFirst {
+        display: block;
+        text-align: center;
+    }
+
+    footer p.fin .Fin {
+        display: block;
+        text-align: center;
+    }
+
+    footer p.fin .cursor {
+        display: inline;
+        font-size: 26px;
     }
 }

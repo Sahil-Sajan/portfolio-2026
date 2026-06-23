@@ -76,9 +76,10 @@ const Denji = () => {
   const wrapperStyle = {
     position: "relative",
     zIndex: 6,
-    bottom: "-200px",
     aspectRatio: "1024 / 1536",
-    ...(isMobile ? { width: "100%" } : { height: "150%" }),
+    ...(isMobile
+      ? { width: "130%", bottom: "-120px" }
+      : { height: "150%", bottom: "-200px" }),
   };
 
   const layerStyle = {

@@ -8,6 +8,9 @@
   box-sizing: border-box;
 }
 
+.desktopOnly { width: 100%; height: 100%; }
+.mobileOnly  { display: none; }
+
 .middle {
   display: flex;
   gap: 1px;
@@ -508,8 +511,20 @@
     height: auto;
   }
 
+  .desktopOnly { display: none; }
+  .mobileOnly  { display: block; width: 100%; height: 100%; }
+
+  .leftFirst {
+    height: 360px;
+  }
+
   .leftFirstS1 {
-    display: none;
+    display: block;
+    min-width: unset;
+    max-width: unset;
+    flex: 0 0 30%;
+    height: 100%;
+    order: 2;
   }
 
   .thirdWrapperNew {
@@ -521,11 +536,14 @@
   }
 
   .aboutImgWrapper {
-    width: 100%;
+    flex: 0 0 70%;
+    width: 70%;
+    height: 100%;
+    order: 1;
   }
 
   .leftFirstCell {
-    flex: 0 0 60px;
+    display: none;
   }
 
   .rightSecond {

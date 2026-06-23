@@ -298,9 +298,7 @@ const Home = forwardRef(
                     )
                     ]
                 }{" "}
-                years, Kashyap has immersed himself in the world of product
-                design, nurturing his dream of becoming a leading design
-                engineer. He is shy and known to daydream from time to time.
+                years, Sahil has been mastering frameworks and code to become as strong as possible. He is a quiet developer with a massive dream: to build legendary digital experiences and push his work to total perfection.
                 </h3>
                 <div className={styles.stars}>
                     <svg
@@ -392,17 +390,16 @@ const Home = forwardRef(
             <div className={styles.metricWrapper}>
               <Metric
                 ref={grassTargetRef1}
-                name={"PRODUCTS DESIGNED"}
-                count={11}
+                name={"PROJECTS COMPLETED"}
+                count={5}
                 isLoaded={isLoaded}
                 delay={0}
               />
               <GrassOverlay targetRef={grassTargetRef1} />
               <Metric
                 ref={grassTargetRef2}
-                name={"DESIGN EXPERIENCE"}
+                name={"DEV EXPERIENCE"}
                 count={
-                  "+" +
                   Math.floor(
                     (new Date() - new Date("2023-10-01")) /
                       (1000 * 60 * 60 * 24 * 365.25)
