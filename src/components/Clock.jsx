@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 
 function Clock() {
-  const getIndiaTime = () =>
+  const getPakistanTime = () =>
     new Date().toLocaleTimeString([], {
-      timeZone: "Asia/Kolkata", // Forces India Standard Time (IST)
+      timeZone: "Asia/Karachi", // Pakistan Standard Time (PKT)
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
     });
 
-  const [time, setTime] = useState(getIndiaTime());
+  const [time, setTime] = useState(getPakistanTime());
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(getIndiaTime());
+      setTime(getPakistanTime());
     }, 1000);
 
     return () => clearInterval(interval);

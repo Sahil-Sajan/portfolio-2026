@@ -842,7 +842,7 @@ const Home = forwardRef(
                 <h3 className={styles.timeh3}>
                   LOCAL TIME <Clock />
                 </h3>
-                <h3 className={styles.timeh32}>GMT +0530</h3>
+                <h3 className={styles.timeh32}>GMT +0500</h3>
               </div>
             </div>
 
