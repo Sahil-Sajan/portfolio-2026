@@ -205,76 +205,18 @@ const Hero = ({ isLoaded }) => {
 
   // Eye animations
   const animateEyesLeft = useCallback(() => {
-    if (
-      !leftIrisRef.current ||
-      !rightIrisRef.current ||
-      !leftBrowRef.current ||
-      !rightBrowRef.current
-    )
-      return;
-    gsap.to(leftIrisRef.current, {
-      attr: {
-        d: "M143 237.5C143 241.918 139.418 245.5 135 245.5C130.582 245.5 127 241.918 127 237.5C127 233.082 130.582 229.5 135 229.5C139.418 229.5 143 233.082 143 237.5Z",
-      },
-      duration: d,
-      ease: "power3.out",
-    });
-    gsap.to(rightIrisRef.current, {
-      attr: {
-        d: "M221.5 245.5C221.5 250.194 217.694 254 213 254C208.306 254 204.5 250.194 204.5 245.5C204.5 240.806 208.306 237 213 237C217.694 237 221.5 240.806 221.5 245.5Z",
-      },
-      duration: d,
-      ease: "power3.out",
-    });
-    gsap.to(leftBrowRef.current, {
-      attr: {
-        d: "M120.499 210.5C119.791 212.622 118.902 214.379 117.899 215.218C117.69 215.393 117.603 215.691 117.733 215.93L120.135 220.334C120.307 220.649 120.75 220.687 121.016 220.446C126.065 215.893 141.624 222.482 149.499 226.5C140.999 208.5 129.999 206.167 126.499 207C125.332 207.167 121.299 208.1 120.499 210.5Z",
-      },
-      duration: d,
-      ease: "power3.out",
-    });
-    gsap.to(rightBrowRef.current, {
-      attr: {
-        d: "M192.47 210.449C182.438 210.374 180.054 216.557 180.009 220.903C179.731 224.07 183.469 226.697 185.514 226.412C185.539 226.409 185.564 226.4 185.586 226.386C203.001 215.783 234.438 227.735 248.962 235.516C249.16 235.622 249.341 235.36 249.191 235.194C227.517 211.04 204.864 210.541 192.47 210.449Z",
-      },
+    if (!leftIrisRef.current || !rightIrisRef.current) return;
+    gsap.to([leftIrisRef.current, rightIrisRef.current], {
+      x: -4,
       duration: d,
       ease: "power3.out",
     });
   }, []);
 
   const animateEyesRight = useCallback(() => {
-    if (
-      !leftIrisRef.current ||
-      !rightIrisRef.current ||
-      !leftBrowRef.current ||
-      !rightBrowRef.current
-    )
-      return;
-    gsap.to(leftIrisRef.current, {
-      attr: {
-        d: "M151 240.5C151 244.918 147.418 248.5 143 248.5C138.582 248.5 135 244.918 135 240.5C135 236.082 138.582 232.5 143 232.5C147.418 232.5 151 236.082 151 240.5Z",
-      },
-      duration: d,
-      ease: "power3.out",
-    });
-    gsap.to(rightIrisRef.current, {
-      attr: {
-        d: "M229.5 248.5C229.5 253.194 225.694 257 221 257C216.306 257 212.5 253.194 212.5 248.5C212.5 243.806 216.306 240 221 240C225.694 240 229.5 243.806 229.5 248.5Z",
-      },
-      duration: d,
-      ease: "power3.out",
-    });
-    gsap.to(leftBrowRef.current, {
-      attr: {
-        d: "M120.499 206.5C119.791 208.622 118.902 210.379 117.899 211.218C117.69 211.393 117.603 211.691 117.733 211.93L120.135 216.334C120.307 216.649 120.75 216.687 121.016 216.446C126.065 211.893 141.624 218.482 149.499 222.5C140.999 204.5 129.999 202.167 126.499 203C125.332 203.167 121.299 204.1 120.499 206.5Z",
-      },
-      duration: d,
-      ease: "power3.out",
-    });
-    gsap.to(rightBrowRef.current, {
-      attr: {
-        d: "M192.47 206.449C182.438 206.374 180.054 212.557 180.009 216.903C179.731 220.07 183.469 222.697 185.514 222.412C185.539 222.409 185.564 222.4 185.586 222.386C203.001 211.783 234.438 223.735 248.962 231.516C249.16 231.622 249.341 231.36 249.191 231.194C227.517 207.04 204.864 206.541 192.47 206.449Z",
-      },
+    if (!leftIrisRef.current || !rightIrisRef.current) return;
+    gsap.to([leftIrisRef.current, rightIrisRef.current], {
+      x: 4,
       duration: d,
       ease: "power3.out",
     });
@@ -346,8 +288,8 @@ const Hero = ({ isLoaded }) => {
     if (!leftIrisRef.current || !rightIrisRef.current) return;
 
     const irisConfig = [
-      { ref: leftIrisRef, maxMove: 0.6 },
-      { ref: rightIrisRef, maxMove: 1.2 },
+      { ref: leftIrisRef, maxMove: 4 },
+      { ref: rightIrisRef, maxMove: 4 },
     ];
 
     const getIrisCenter = (el) => {
@@ -858,8 +800,8 @@ const Hero = ({ isLoaded }) => {
           ref={meSvgRef}
           className={styles["me"]}
           width="375"
-          height="480"
-          viewBox="0 0 375 480"
+          height="600"
+          viewBox="0 0 375 600"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
@@ -872,14 +814,14 @@ const Hero = ({ isLoaded }) => {
                 x="0"
                 y="-1"
                 width="375"
-                height="481"
+                height="601"
                 fill="black"
               >
-                <rect fill="white" y="-1" width="375" height="481" />
-                <path d="M0 0H375V471C375 475.971 370.971 480 366 480H9C4.02943 480 0 475.971 0 471V0Z" />
+                <rect fill="white" y="-1" width="375" height="601" />
+                <path d="M0 0H375V591C375 595.971 370.971 600 366 600H9C4.02943 600 0 595.971 0 591V0Z" />
               </mask>
               <path
-                d="M0 0H375V471C375 475.971 370.971 480 366 480H9C4.02943 480 0 475.971 0 471V0Z"
+                d="M0 0H375V591C375 595.971 370.971 600 366 600H9C4.02943 600 0 595.971 0 591V0Z"
                 fill="var(--hero-bg-main)"
               />
               <path
@@ -914,7 +856,7 @@ const Hero = ({ isLoaded }) => {
                   stroke="var(--off-white)"
                   strokeWidth="1.5"
                 />
-                <g id="Face">
+                <g id="Face" display="none">
                   <path
                     id="Vector 281"
                     d="M35.5 423.5L149.5 383.5L276 385.5L404 484H0L8 454C12.8 436 28.3333 426.167 35.5 423.5Z"
@@ -965,7 +907,6 @@ const Hero = ({ isLoaded }) => {
                       fill="var(--off-black)"
                     />
                     <path
-                      ref={rightIrisRef}
                       id="Eye-Right"
                       d="M221.5 245.5C221.5 250.194 217.694 254 213 254C208.306 254 204.5 250.194 204.5 245.5C204.5 240.806 208.306 237 213 237C217.694 237 221.5 240.806 221.5 245.5Z"
                       fill="var(--off-black)"
@@ -1003,7 +944,6 @@ const Hero = ({ isLoaded }) => {
                       fill="var(--off-black)"
                     />
                     <path
-                      ref={leftIrisRef}
                       id="Eye-Left"
                       d="M143 237.5C143 241.918 139.418 245.5 135 245.5C130.582 245.5 127 241.918 127 237.5C127 233.082 130.582 229.5 135 229.5C139.418 229.5 143 233.082 143 237.5Z"
                       fill="var(--off-black)"
@@ -1073,6 +1013,8 @@ const Hero = ({ isLoaded }) => {
                   />
                 </g>
 
+                <image href="/sahil.svg" x="0" y="0" width="375" height="600" />
+
                 <clipPath id="fishermanclip">
                   <rect x="0" y="0" width="210px" height="108" />
                 </clipPath>
@@ -1124,7 +1066,7 @@ const Hero = ({ isLoaded }) => {
               </g>
 
               <path
-                d="M0 -1H375V1H0V-1ZM375 480H0H375ZM0 480V0V480ZM375 0V480V0Z"
+                d="M0 -1H375V1H0V-1ZM375 600H0H375ZM0 600V0V600ZM375 0V600V0Z"
                 fill="var(--dark-green)"
                 mask="url(#path-1-outside-1_1470_10701)"
               />
@@ -1154,7 +1096,7 @@ const Hero = ({ isLoaded }) => {
                 <stop offset="1" stopColor="var(--light-off-teal)" />
               </linearGradient>
               <clipPath id="clip0_1470_10701">
-                <rect width="375" height="480" fill="white" />
+                <rect width="375" height="600" fill="white" />
               </clipPath>
             </defs>
           </g>

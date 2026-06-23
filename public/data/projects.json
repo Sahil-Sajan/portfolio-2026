@@ -21,19 +21,19 @@
             ]
         },
         {
-            "name": "ADVIBE GROUP",
-            "description": "A done-for-you revenue and lead generation marketing platform built for high-converting user flows",
-            "img": "/project_imgs/tr_1.webp",
+            "name": "JAYAKHUB",
+            "description": "A multi-tenant admin platform coordinating operations, finance, drivers, restaurants, and RBAC for a food delivery ecosystem",
+            "img": "/project_imgs/j1.png",
             "tags": [
                 "Web App",
-                "Lead Gen",
-                "Marketing Tech"
+                "Admin Dashboard",
+                "Food Delivery"
             ]
         },
         {
             "name": "ROOS BROTHERS",
             "description": "A premium luxury e-commerce brand storefront engineered with a customer-facing admin panel",
-            "img": "/project_imgs/ss_1.webp",
+            "img": "/project_imgs/r1.png",
             "tags": [
                 "Web App",
                 "E-Commerce",
