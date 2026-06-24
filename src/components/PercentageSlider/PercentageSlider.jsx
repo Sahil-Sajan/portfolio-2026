@@ -236,7 +236,7 @@ const PercentageSlider = () => {
   return (
     <div ref={containerRef} style={containerStyle}>
       <div style={squareStyle}>
-        <canvas ref={canvasRef} style={canvasStyle} role="img" aria-label="Photo of Kashyap" />
+        <canvas ref={canvasRef} style={canvasStyle} role="img" aria-label="Photo of Sahil" />
       </div>
 
       <div

@@ -9,12 +9,8 @@ const LinkButtonFooter = ({ linkName, linkTo = "", lenis, onClick, offset=false}
 	const handleClick = () => {
 		playClick();
 		// Handle lenis scroll if linkTo is provided
-		if(lenis && linkTo !== "https://2022.kashyaprayas.com" && linkTo !=="") {
+		if(lenis && linkTo !== "") {
             lenis.scrollTo(linkTo, {duration: 2, offset: offset? -60 : 0})
-        }
-
-        if(linkTo === "https://2022.kashyaprayas.com") {
-            window.open(linkTo, "_blank");
         }
         // Call the onClick callback if provided
 		if (onClick) {

@@ -1,6 +1,6 @@
 {
   "name": "package.json",
-  "homepage": "https://KashyapRayas.github.io/Website2025/",
+  "homepage": "https://sahilsajanportfoliovercel.app/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --cname kashyaprayas.com"
+    "deploy": "gh-pages -d dist --cname sahilsajanportfoliovercel.app"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -55,7 +55,7 @@ const Hero = ({ isLoaded }) => {
 
   // mid-top typing animation state
   const DEFAULT_MID_TOP = "Choose a font with me";
-  const HOVER_MID_TOP   = "One must imagine Kashyap happy";
+  const HOVER_MID_TOP   = "Sahil is happy";
   const [midTopText,        setMidTopText]        = useState(DEFAULT_MID_TOP);
   const [midTopHighlighted, setMidTopHighlighted] = useState(false);
   const [midTopCursor,      setMidTopCursor]      = useState(false);

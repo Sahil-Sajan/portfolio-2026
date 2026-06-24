@@ -249,7 +249,7 @@ const ModifierDeck = ({ handleBack, onBackWithScroll, isIncomingTransition }) =>
                 </div>
                 <h3 className={styles.desch3}>
                   Completing a task or achievement forges a new card,
-                  enhancing Kashyap's traits.
+                  enhancing Sahil's traits.
                   <br/>
                 </h3>
               </div>
@@ -284,7 +284,7 @@ const ModifierDeck = ({ handleBack, onBackWithScroll, isIncomingTransition }) =>
                     </div>
                     <h3 className={styles.desch3}>
                         Completing a task or achievement forges a new card,
-                        enhancing Kashyap's traits.
+                        enhancing Sahil's traits.
                         <br/>
                     </h3>
                 </div>
