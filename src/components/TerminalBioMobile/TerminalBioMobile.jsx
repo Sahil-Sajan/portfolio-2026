@@ -18,8 +18,8 @@ const SEQUENCE = [
     cmd: "sahil.skills",
     out: [
       "[ 'Next.js', 'React',",
-      "  'TypeScript', 'GSAP',",
-      "  'Tailwind', 'Figma' ]",
+      "  'TypeScript', 'Express.js',",
+      "  'Tailwind', 'Node.js' ]",
     ],
   },
   {
@@ -50,16 +50,16 @@ const SEQUENCE = [
 ];
 
 const CHAR_MS = 45;
-const OUT_MS  = 70;
-const CMD_PAUSE  = 400;
+const OUT_MS = 70;
+const CMD_PAUSE = 400;
 const LOOP_PAUSE = 2000;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export default function TerminalBioMobile() {
-  const [lines, setLines]   = useState([]);
+  const [lines, setLines] = useState([]);
   const [cursor, setCursor] = useState(false);
-  const bodyRef             = useRef(null);
+  const bodyRef = useRef(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -112,8 +112,8 @@ export default function TerminalBioMobile() {
   return (
     <div className={styles.terminal}>
       <div className={styles.header}>
-        <span className={`${styles.dot} ${styles.red}`}   />
-        <span className={`${styles.dot} ${styles.yellow}`}/>
+        <span className={`${styles.dot} ${styles.red}`} />
+        <span className={`${styles.dot} ${styles.yellow}`} />
         <span className={`${styles.dot} ${styles.green}`} />
         <span className={styles.title}>sahil.js</span>
       </div>
