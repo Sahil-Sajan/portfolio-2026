@@ -17,7 +17,7 @@ import styles from "./Home.module.css";
 import Clock from "../components/Clock";
 import AnimatedArrow from "../components/AnimatedArrow";
 import AnimatedDownwardArrow from "../components/AnimatedDownwardArrow";
-import Metric from "../components/metric";
+import Metric from "../components/Metric";
 import Hero from "../components/Hero/Hero";
 import AnimatedMan from "../components/AnimatedMan";
 import GrassOverlay from "../components/GrassOverlay";

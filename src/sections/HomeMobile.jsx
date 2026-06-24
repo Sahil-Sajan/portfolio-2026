@@ -4,7 +4,7 @@ import { CustomEase } from "gsap/CustomEase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./HomeMobile.module.css";
 import Clock from "../components/Clock";
-import Metric from "../components/metric";
+import Metric from "../components/Metric";
 import HeroMobile from "../components/Hero/HeroMobile";
 import AnimatedMan from "../components/AnimatedMan";
 import { useGSAP } from "@gsap/react";
