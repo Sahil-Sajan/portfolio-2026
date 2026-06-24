@@ -37,40 +37,50 @@ const ListItem = ({ icon, text, span }) => (
 // Objective sentence as reveal segments. `trail` is punctuation glued to its
 // word (so it never wraps onto its own line); `className` styles a whole word.
 const OBJECTIVE_SEGMENTS = [
-  { text: "Honestly", trail: { text: ",", className: styles.objComma } },
   { text: "I" },
-  { text: "treat" },
-  { text: "the" },
-  { text: "browser", className: styles.objLora },
-  { text: "like" },
-  { text: "an" },
-  { text: "open" },
-  { text: "canvas", className: styles.objLora },
-  { text: "and" },
-  { text: "Next.js", className: styles.objLora },
-  { text: "like" },
-  { text: "my" },
-  { text: "medium", trail: { text: ".", className: styles.objPeriod } },
-  { text: "I" },
-  { text: "love" },
-  { text: "turning" },
-  { text: "complex" },
-  { text: "logic" },
-  { text: "into" },
-  { text: "clean", trail: { text: ",", className: styles.objComma } },
-  { text: "fluid", className: styles.objLora },
-  { text: "web" },
-  { text: "experiences" },
-  { text: "that" },
-  { text: "just" },
-  { text: "feel", className: styles.objLora },
-  { text: "right", trail: { text: ".", className: styles.objPeriod } },
-  { text: "Let's" },
   { text: "build" },
-  { text: "something" },
-  { text: "beautiful", className: styles.objLora, trail: { text: ".", className: styles.objPeriod } },
-];
+  { text: "scalable", className: styles.objLora },
+  { text: "SaaS" },
+  { text: "platforms", trail: { text: ",", className: styles.objComma } },
+  { text: "AI-powered", className: styles.objLora },
+  { text: "products", trail: { text: ",", className: styles.objComma } },
+  { text: "and" },
+  { text: "modern" },
+  { text: "web" },
+  { text: "experiences", trail: { text: ".", className: styles.objPeriod } },
 
+  { text: "From" },
+  { text: "polished", className: styles.objLora },
+  { text: "interfaces" },
+  { text: "to" },
+  { text: "scalable" },
+  { text: "systems", trail: { text: ",", className: styles.objComma } },
+  { text: "I" },
+  { text: "focus" },
+  { text: "on" },
+  { text: "building" },
+  { text: "products" },
+  { text: "that" },
+  { text: "feel" },
+  { text: "fast", className: styles.objLora },
+  { text: "and" },
+  { text: "last", className: styles.objLora, trail: { text: ".", className: styles.objPeriod } },
+
+  { text: "Using" },
+  { text: "Next.js", className: styles.objLora },
+  { text: ",", trail: { text: "", className: "" } },
+  { text: "TypeScript", className: styles.objLora },
+  { text: "and" },
+  { text: "Node.js", className: styles.objLora },
+  { text: "," },
+  { text: "I" },
+  { text: "turn" },
+  { text: "ideas" },
+  { text: "into" },
+  { text: "production", className: styles.objLora },
+  { text: "ready" },
+  { text: "products", trail: { text: ".", className: styles.objPeriod } },
+];
 const ExperienceBlock = ({ company, experiences }) => (
   <div className={styles.experienceWrapper}>
     <div className={styles.company}>
@@ -197,20 +207,31 @@ const About = forwardRef((_, ref) => {
                 </span>
               </div>
               <h3>DESCRIPTIVE</h3>
+              ```jsx
             </div>
             <p className={styles.desch3}>
               <span>[ my intro ]</span> I’m Sahil Sajjan{" "}
-              <span>[ Front-End Dev ]</span>, the kind of creator who treats the browser like an open canvas and Next.js like my medium[cite: 1]. Based in Hyderabad, Pakistan{" "}
-              <span>[ building for the world ]</span>, I lose sleep over whether an animation curve is 20ms too slow[cite: 1]. I force myself to notice the tiny details most people skip — and that’s exactly why the interfaces I build feel fluid, natural, and alive the second you touch them[cite: 1].
+              <span>[ Full-Stack Developer ]</span>, the kind of builder who sees products as more than just screens and code. From crafting polished interfaces in Next.js to architecting the systems that power them behind the scenes, I enjoy turning ambitious ideas into software people genuinely love using.
 
               <br />
               <br />
-              Where others just ship code, I practice digital craftsmanship[cite: 1]. Armed with an IT foundation and a diploma in web dev, I live right at the intersection where logic meets art — TypeScript keeping my structures honest, Framer Motion keeping my layouts beautiful[cite: 1].
+
+              Based in Hyderabad, Pakistan{" "}
+              <span>[ building for the world ]</span>, I obsess over the details most people never notice — whether that's a perfectly timed animation, a clean API structure, or a component architecture that scales effortlessly as products grow. I believe the best digital experiences feel simple on the surface because of the complexity carefully handled underneath.
+
               <br />
               <br />
-              Right now, I’m at Samarix architecting production-grade platforms like Sentinel Kids, Nortra, Advibe, and Roos Brothers — while taking on the occasional freelance project when a unique, creative challenge lands on my desk[cite: 1].
+
+              Where others just ship features, I focus on building products that last. Armed with an IT foundation and a deep curiosity for how things work, I sit at the intersection of design, engineering, and problem-solving — using TypeScript to keep systems reliable, Next.js to deliver performant experiences, and modern web technologies to bridge the gap between vision and reality.
+
+              <br />
+              <br />
+
+
             </p>
           </div>
+          ```
+
 
           <GrassOverlay targetRef={grassTargetRef1}></GrassOverlay>
 
