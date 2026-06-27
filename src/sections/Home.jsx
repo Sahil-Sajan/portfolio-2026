@@ -25,7 +25,6 @@ import LegoStreakCanvas from "../components/LegoStreakCanvas";
 import SpotifyPlayer from "../components/SpotifyPlayer/SpotifyPlayer";
 import { useCardCount } from "../hooks/useCardCount";
 
-gsap.registerPlugin(CustomEase, ScrollTrigger);
 
 const BASE_PATH = "";
 

@@ -1,4 +1,4 @@
-import { forwardRef, useRef, useCallback, useEffect, useState } from "react";
+import { forwardRef, useRef, useCallback, useEffect, useState, memo } from "react";
 import Digit from "./Digit";
 import { usePixelHover } from "../hooks/usePixelHover";
 
@@ -72,4 +72,4 @@ const Metric = forwardRef(({ name, count, isLoaded }, forwardedRef) => {
   );
 });
 
-export default Metric;
+export default memo(Metric);

@@ -1,12 +1,13 @@
-import { useState, useCallback, useEffect, useRef } from "react"
+import { useState, useCallback, useEffect, useRef, lazy, Suspense } from "react"
 import './App.css'
 import { ReactLenis, useLenis } from 'lenis/react'
 
 import Preloader from './components/Preloader/Preloader.jsx'
 import Landing from './pages/Landing.jsx'
-import Project from './pages/Project.jsx'
-import ModifierDeck from './pages/ModifierDeck.jsx'
 import TransitionLoader from './components/TransitionLoader/TransitionLoader.jsx'
+
+const Project      = lazy(() => import('./pages/Project.jsx'))
+const ModifierDeck = lazy(() => import('./pages/ModifierDeck.jsx'))
 import { useSmoothScrollConfig } from './hooks/useSmoothScrollConfig'
 import { ThemeProvider } from './context/ThemeContext.jsx'
 
@@ -201,22 +202,25 @@ function App() {
         )}
 
         {view === 'project' && (
-          <Project
-            handleBack={handleBackToLanding}
-            onBackWithScroll={handleBackWithScroll}
-            isIncomingTransition={isTransitioning && (transitionDirection === 'in' || corrector)}
-            selectedProjectName={selectedProjectName}
-            onNextProjectSelect={handleNextProjectSelect}
-          />
+          <Suspense fallback={null}>
+            <Project
+              handleBack={handleBackToLanding}
+              onBackWithScroll={handleBackWithScroll}
+              isIncomingTransition={isTransitioning && (transitionDirection === 'in' || corrector)}
+              selectedProjectName={selectedProjectName}
+              onNextProjectSelect={handleNextProjectSelect}
+            />
+          </Suspense>
         )}
 
-        {/* 5. Render the ModifierDeck view */}
         {view === 'modifier_deck' && (
-          <ModifierDeck
-            handleBack={handleBackToLanding}
-            onBackWithScroll={handleBackWithScroll}
-            isIncomingTransition={isTransitioning && transitionDirection === 'modifier_in'}
-          />
+          <Suspense fallback={null}>
+            <ModifierDeck
+              handleBack={handleBackToLanding}
+              onBackWithScroll={handleBackWithScroll}
+              isIncomingTransition={isTransitioning && transitionDirection === 'modifier_in'}
+            />
+          </Suspense>
         )}
       </ReactLenis>
     </>

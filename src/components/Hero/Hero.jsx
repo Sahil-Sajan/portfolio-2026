@@ -9,7 +9,6 @@ import { gsap } from "gsap";
 import { useButtonSounds } from "../../hooks/useButtonSounds";
 import { useGSAP } from "@gsap/react";
 import { CustomEase } from "gsap/CustomEase";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLenis } from "lenis/react";
 
 import styles from "./Hero.module.css";
@@ -19,7 +18,6 @@ import figma_cancel from "/icons/figma_cancel.png";
 import figma_search from "/icons/figma_search.png";
 import box_anchor from "/box_anchor.svg";
 
-gsap.registerPlugin(ScrollTrigger, CustomEase);
 
 (() => {
   try {

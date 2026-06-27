@@ -42,6 +42,7 @@ export default function SnakeGame() {
   const stateRef   = useRef(null);
   const rafRef     = useRef(null);
   const lastTickRef = useRef(0);
+  const visibleRef  = useRef(false);
   const { isDark } = useTheme();
   const colorsRef  = useRef(LIGHT);
 
@@ -61,6 +62,13 @@ export default function SnakeGame() {
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
     resize();
+
+    // Pause RAF when scrolled off screen
+    const io = new IntersectionObserver(
+      ([entry]) => { visibleRef.current = entry.isIntersecting; },
+      { rootMargin: "200px" }
+    );
+    io.observe(canvas);
 
     const onKey = (e) => {
       const s = stateRef.current;
@@ -114,6 +122,7 @@ export default function SnakeGame() {
 
     return () => {
       ro.disconnect();
+      io.disconnect();
       window.removeEventListener("keydown", onKey);
       canvas.removeEventListener("touchstart", onTouchStart);
       canvas.removeEventListener("touchend",   onTouchEnd);
@@ -149,6 +158,7 @@ export default function SnakeGame() {
   function startLoop() {
     const loop = (ts) => {
       rafRef.current = requestAnimationFrame(loop);
+      if (!visibleRef.current) return;
       if (ts - lastTickRef.current >= TICK_MS) {
         lastTickRef.current = ts;
         tick();

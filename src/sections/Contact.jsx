@@ -6,9 +6,7 @@ import AnimatedArrow from "../components/AnimatedArrow";
 import GrassOverlay from "../components/GrassOverlay";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
 
 const Contact = forwardRef(({ }, ref) => {
   const { playHover: _playHover, playClick: _playClick } = useButtonSounds();

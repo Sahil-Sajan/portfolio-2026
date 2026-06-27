@@ -11,7 +11,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
 
 const LEAF_VARIANTS = [
   {
@@ -136,6 +135,8 @@ const GrassOverlay = ({
   useLayoutEffect(() => {
     if (!targetRef.current) return;
 
+    let nearViewport = false;
+
     const updateLayout = () => {
       const scale = getAppScale();
       const rect = targetRef.current.getBoundingClientRect();
@@ -173,11 +174,16 @@ const GrassOverlay = ({
 
     resizeObserver.observe(targetRef.current);
 
-    // RAF-throttle the scroll handler — with multiple GrassOverlay instances
-    // on the page, firing updateLayout (getBoundingClientRect + setState) on
-    // every scroll event causes excessive layout reads and re-renders.
+    // Only recalculate position on scroll when the target is near the viewport
+    const io = new IntersectionObserver(
+      ([entry]) => { nearViewport = entry.isIntersecting; },
+      { rootMargin: "300px" }
+    );
+    io.observe(targetRef.current);
+
     let scrollRaf = null;
     const onScroll = () => {
+      if (!nearViewport) return;
       if (scrollRaf) return;
       scrollRaf = requestAnimationFrame(() => {
         scrollRaf = null;
@@ -189,6 +195,7 @@ const GrassOverlay = ({
 
     return () => {
       resizeObserver.disconnect();
+      io.disconnect();
       window.removeEventListener("scroll", onScroll);
       if (scrollRaf) cancelAnimationFrame(scrollRaf);
     };
@@ -326,4 +333,4 @@ return (
   );
 };
 
-export default GrassOverlay;
+export default React.memo(GrassOverlay);

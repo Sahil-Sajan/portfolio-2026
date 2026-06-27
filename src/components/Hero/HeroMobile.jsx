@@ -18,7 +18,6 @@ import figma_cancel from "/icons/figma_cancel.png";
 import figma_search from "/icons/figma_search.png";
 import box_anchor from "/box_anchor.svg";
 
-gsap.registerPlugin(CustomEase, ScrollTrigger);
 
 // Create the named ease once
 (() => {
@@ -641,31 +640,31 @@ const Hero = ({ isLoaded }) => {
           <g clipPath="url(#clip0_1875_13046)">
             <path
               d="M0 9C0 4.02943 4.02944 0 9 0H278C282.971 0 287 4.02944 287 9V312C287 316.971 282.971 321 278 321H9C4.02944 321 0 316.971 0 312V9Z"
-              fill="#00A084"
+              fill="var(--dark-green)"
             />
             <path
               ref={rect4Ref}
               id="rect-4"
               d="M0 0H287V165H0V0Z"
-              fill="#009178"
+              fill="var(--hero-bg-4)"
             />
             <path
               ref={rect3Ref}
               id="rect-3"
               d="M0 0H287V150H0V0Z"
-              fill="#00826B"
+              fill="var(--hero-bg-3)"
             />
             <path
               ref={rect2Ref}
               id="rect-2"
               d="M0 0H287V120H0V0Z"
-              fill="#00735F"
+              fill="var(--hero-bg-2)"
             />
             <path
               ref={rect1Ref}
               id="rect-1"
               d="M0 0H287V60H0V0Z"
-              fill="#006352"
+              fill="var(--hero-bg-1)"
             />
             <g id="parallax-group" ref={parallaxGroupRef}>
               <image href="/sahil1.svg" x="0" y="-44" width="287" height="430" />

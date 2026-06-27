@@ -13,7 +13,6 @@ import AnimatedArrow from "../components/AnimatedArrow";
 import { useButtonSounds } from "../hooks/useButtonSounds";
 import { useCardCount } from "../hooks/useCardCount";
 
-gsap.registerPlugin(CustomEase, ScrollTrigger);
 
 const Home = forwardRef(
   ({ isLoaded, isLoadedforHero, onModifierDeckSelect, returnedFrom }, ref) => {

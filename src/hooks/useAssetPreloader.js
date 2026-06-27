@@ -1,15 +1,10 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 const BASE_PATH = "";
-const PROJECT_DATA_FOLDER = `${BASE_PATH}/data/project_data`;
 const PROJECTS_INDEX_PATH = `${BASE_PATH}/data/projects.json`;
 
-const getProjectJsonFilename = (projectName) => {
-  return projectName.toLowerCase().replace(/\s/g, "_");
-};
-
 // --- STATIC ASSETS ---
-// Only list things actually used in your React components/CSS.
+// Only things actually used in React components/CSS.
 const STATIC_IMAGE_ASSETS = Object.freeze([
   "/box_anchor.svg",
   "/checked.svg",
@@ -66,36 +61,9 @@ const preloadImage = (src) => {
   return new Promise((resolve) => {
     const img = new Image();
     img.onload = () => resolve(src);
-    img.onerror = () => resolve(src); // resolve even on error
+    img.onerror = () => resolve(src);
     img.src = src;
   });
-};
-
-// ✅ Fetch JSON dynamically from public/
-const preloadJson = async (filename) => {
-  const path = `${PROJECT_DATA_FOLDER}/${filename}.json`;
-  try {
-    const res = await fetch(path);
-    if (!res.ok) throw new Error(`Failed to fetch JSON: ${path}`);
-    return await res.json();
-  } catch (error) {
-    console.error(`Failed to load project JSON for ${filename}:`, error);
-    return null;
-  }
-};
-
-// Helper: find all image paths inside JSON data recursively
-const IMAGE_PATH_REGEX =
-  /"(\/(?:project_imgs|about_imgs)\/[^"]+\.(?:png|jpg|jpeg|gif|webp|svg))"/gi;
-
-const scanForImages = (data, paths = new Set()) => {
-  if (!data) return paths;
-  const jsonString = JSON.stringify(data);
-  let match;
-  while ((match = IMAGE_PATH_REGEX.exec(jsonString)) !== null) {
-    paths.add(match[1]);
-  }
-  return paths;
 };
 
 export const useAssetPreloader = () => {
@@ -114,7 +82,6 @@ export const useAssetPreloader = () => {
   }, []);
 
   const startPreloading = useCallback(async () => {
-    // Small delay to let animations render
     await new Promise((resolve) => setTimeout(resolve, 200));
 
     loadedCountRef.current = 0;
@@ -122,14 +89,10 @@ export const useAssetPreloader = () => {
     setIsComplete(false);
 
     const assetsToLoad = new Set();
-    const phase1Promises = [];
 
-    // --- PHASE 1: Collect Static & Core assets ---
-    STATIC_IMAGE_ASSETS.forEach((asset) =>
-      assetsToLoad.add(BASE_PATH + asset)
-    );
+    STATIC_IMAGE_ASSETS.forEach((asset) => assetsToLoad.add(BASE_PATH + asset));
 
-    // ✅ Load the projects index dynamically
+    // Load the projects index to get Work section thumbnails only
     let projectsIndex;
     try {
       const res = await fetch(PROJECTS_INDEX_PATH);
@@ -140,73 +103,30 @@ export const useAssetPreloader = () => {
       projectsIndex = { projects: [] };
     }
 
-    // Add project thumbnails from projects.json
+    // Only preload Work section thumbnails — project page images load on demand
     projectsIndex.projects.forEach((project) => {
       if (project.img) assetsToLoad.add(BASE_PATH + project.img);
     });
 
-    // Project filenames
-    const projectJsonFilenames = projectsIndex.projects.map((p) =>
-      getProjectJsonFilename(p.name)
-    );
-
-    // Set initial total count
-    let currentTotal =
-      assetsToLoad.size +
-      REACT_MODULES_TO_PRELOAD.length +
-      projectJsonFilenames.length;
-    totalCountRef.current = currentTotal;
+    totalCountRef.current = assetsToLoad.size + REACT_MODULES_TO_PRELOAD.length;
 
     const tick = () => {
       loadedCountRef.current++;
       calculateTotalProgress();
     };
 
-    // Phase 1: preload base images
+    const promises = [];
+
     Array.from(assetsToLoad).forEach((url) => {
-      phase1Promises.push(preloadImage(url).then(tick));
+      promises.push(preloadImage(url).then(tick));
     });
 
-    // Preload React modules
     REACT_MODULES_TO_PRELOAD.forEach((fn) => {
-      phase1Promises.push(fn().then(tick));
+      promises.push(fn().then(tick));
     });
 
-    // Load all JSONs in parallel
-    const jsonPromises = projectJsonFilenames.map((filename) =>
-      preloadJson(filename).then((data) => {
-        tick();
-        return data;
-      })
-    );
+    await Promise.all(promises);
 
-    const loadedJsonData = await Promise.all(jsonPromises);
-
-    // --- PHASE 2: Discover additional images in JSONs ---
-    const discoveredImages = new Set();
-    loadedJsonData.forEach((data) =>
-      scanForImages(data, discoveredImages)
-    );
-
-    const newImagesToLoad = Array.from(discoveredImages).filter(
-      (url) => !assetsToLoad.has(BASE_PATH + url)
-    );
-
-    totalCountRef.current += newImagesToLoad.length;
-
-    // Await any remaining phase 1 promises
-    await Promise.all(phase1Promises);
-
-    // Load discovered images
-    if (newImagesToLoad.length > 0) {
-      await Promise.all(
-        newImagesToLoad.map((url) =>
-          preloadImage(BASE_PATH + url).then(tick)
-        )
-      );
-    }
-
-    // All done
     setProgress(100);
     setTimeout(() => setIsComplete(true), 500);
   }, [calculateTotalProgress]);

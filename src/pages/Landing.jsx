@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, lazy, Suspense } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import Header from '../sections/Header.jsx';
@@ -10,7 +10,9 @@ import Work from '../sections/Work.jsx';
 import About from '../sections/About.jsx';
 import Contact from '../sections/Contact.jsx';
 import Footer from '../sections/Footer.jsx';
-import LampWire from '../components/LampWire/LampWire.jsx';
+
+const LampWire     = lazy(() => import('../components/LampWire/LampWire.jsx'));
+const MobilePlayer = lazy(() => import('../components/MobilePlayer/MobilePlayer.jsx'));
 
 const Landing = ({isLoaded, onProjectSelect, isIncomingTransition, onModifierDeckSelect, isPreloaderDone, returnedFrom, pendingScrollTarget, onScrollTargetConsumed}) => {
     const [linkHovered, setLinkHovered] = useState(false);
@@ -112,7 +114,8 @@ const Landing = ({isLoaded, onProjectSelect, isIncomingTransition, onModifierDec
 
     return (
         <div id="main-content" style={currentStyle}>
-            {isMobile && <LampWire />}
+            {isMobile && <Suspense fallback={null}><LampWire /></Suspense>}
+            {isMobile && <Suspense fallback={null}><MobilePlayer /></Suspense>}
             <HeaderComponent setLinkHovered={setLinkHovered} lenis={lenis} isLoaded={isPreloaderDone} />
             <main>
                 <HomeComponent linkHovered={linkHovered} isLoaded={isPreloaderDone} isLoadedforHero={!isIncomingTransition && isPreloaderDone} handleProjectSelect={onProjectSelect} ref={homeRef} onModifierDeckSelect={onModifierDeckSelect} returnedFrom={returnedFrom}/>

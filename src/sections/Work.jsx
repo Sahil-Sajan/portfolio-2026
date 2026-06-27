@@ -19,7 +19,6 @@ import star from "/star.svg";
 import WorkCursor from "../components/WorkCursor";
 import LegoStudGrid from "../components/LegoStudGrid/LegoStudGrid";
 
-gsap.registerPlugin(ScrollTrigger, CustomEase);
 
 const BASE_PATH = "";
 const PROJECTS_JSON_URL = `${BASE_PATH}/data/projects.json`;

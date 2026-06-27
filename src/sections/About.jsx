@@ -4,24 +4,23 @@ import {
   useRef,
   forwardRef,
   useCallback,
+  lazy,
+  Suspense,
 } from "react";
 import { useButtonSounds } from "../hooks/useButtonSounds";
 import styles from "./About.module.css";
-import SpaceShooter from "../components/SpaceShooter/SpaceShooter.jsx";
-import SnakeGame from "../components/SnakeGame/SnakeGame.jsx";
+
+const SpaceShooter = lazy(() => import("../components/SpaceShooter/SpaceShooter.jsx"));
+const SnakeGame    = lazy(() => import("../components/SnakeGame/SnakeGame.jsx"));
 import star from "/star.svg";
 import checked from "/checked.svg";
 import unchecked from "/unchecked.svg";
 import TerminalBio from "../components/TerminalBio/TerminalBio.jsx";
 import TerminalBioMobile from "../components/TerminalBioMobile/TerminalBioMobile.jsx";
-import gsap from "gsap";
-import { CustomEase } from "gsap/CustomEase";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GrassOverlay from "../components/GrassOverlay.jsx";
 import AnimatedArrow from "../components/AnimatedArrow.jsx";
 import RevealText from "../components/RevealText.jsx";
 
-gsap.registerPlugin(CustomEase, ScrollTrigger);
 
 const ListItem = ({ icon, text, span }) => (
   <div className={styles.item}>
@@ -240,14 +239,14 @@ const About = forwardRef((_, ref) => {
         <div className={styles.left}>
           <div className={styles.leftFirst} ref={cellRef}>
             <div className={styles.leftFirstS1}>
-              <SpaceShooter />
+              <Suspense fallback={null}><SpaceShooter /></Suspense>
             </div>
             <div className={styles.aboutImgWrapper}>
               <div className={styles.desktopOnly}><TerminalBio /></div>
               <div className={styles.mobileOnly}><TerminalBioMobile /></div>
             </div>
             <div className={styles.leftFirstCell}>
-              <SnakeGame />
+              <Suspense fallback={null}><SnakeGame /></Suspense>
             </div>
           </div>
 

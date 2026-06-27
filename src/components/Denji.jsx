@@ -6,7 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { useTheme } from "../context/ThemeContext";
 
-gsap.registerPlugin(ScrollTrigger, CustomEase);
 
 const containerStyle = {
   position: "relative",
