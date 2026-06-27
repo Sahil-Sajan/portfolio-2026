@@ -110,7 +110,7 @@ const Footer = ({ inProject = false, lenis, isMobile, onBackWithScroll }) => {
             <div className="right">
               <div className="wrapper">
                 <p className="copyright">
-                  SAHIL SAJAN &copy; {CURRENT_YEAR}
+                  SAHIL MEYMON &copy; {CURRENT_YEAR}
                 </p>
                 <p className="tagline">ALL LEFTS UNRESERVED</p>
               </div>

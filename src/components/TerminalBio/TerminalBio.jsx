@@ -8,7 +8,7 @@ const SEQUENCE = [
   },
   {
     cmd: "sahil.name",
-    out: ["'Sahil Sajjan'"],
+    out: ["'Sahil Meymon'"],
   },
   {
     cmd: "sahil.role",

@@ -27,25 +27,12 @@ function App() {
   const skipHistoryPush = useRef(false)
 
   useEffect(() => {
-    let prevWidth = window.innerWidth;
-    let timer = null;
-    const handleResize = () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        if (window.innerWidth !== prevWidth) {
-          window.location.reload();
-        }
-      }, 300);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => { window.removeEventListener('resize', handleResize); clearTimeout(timer); };
-  }, []);
-
-  useEffect(() => {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
   }, []);
+
+
 
   useEffect(() => {
     const originalTitle = document.title;

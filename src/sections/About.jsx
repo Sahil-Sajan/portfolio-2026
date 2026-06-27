@@ -209,7 +209,7 @@ const About = forwardRef((_, ref) => {
               ```jsx
             </div>
             <p className={styles.desch3}>
-              <span>[ my intro ]</span> I’m Sahil Sajjan{" "}
+              <span>[ my intro ]</span> I’m Sahil Meymon{" "}
               <span>[ Full-Stack Developer ]</span>, the kind of builder who sees products as more than just screens and code. From crafting polished interfaces in Next.js to architecting the systems that power them behind the scenes, I enjoy turning ambitious ideas into software people genuinely love using.
 
               <br />

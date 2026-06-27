@@ -211,7 +211,7 @@ const Home = forwardRef(
               <span>.</span>
             </h1>
                 <h2 className={styles.topFirstH2}>
-                    Well hello there! I'm <span>Sahil Sajjan.</span> Honestly, I treat the
+                    Well hello there! I'm <span>Sahil Meymon.</span> Honestly, I treat the
                     browser like an open canvas and <span>Next.js</span> like my medium. I love
                     taking heavy, complex logic and turning it into clean, fluid web experiences
                     that just feel right when you use them. To me, a pixel-perfect layout and a
