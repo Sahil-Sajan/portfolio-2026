@@ -251,7 +251,7 @@ const About = forwardRef((_, ref) => {
           </div>
 
           <a
-            href="https://drive.google.com/file/d/1_Wid52EDb-vXa1mFI-EX7_cqGQpFDzzP/view?usp=sharing"
+            href="https://drive.google.com/file/d/17iOMwQbhLmzWtPu3i7kzrEA_cd-ozJ7A/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View Sahil's resume (PDF, opens in new tab)"

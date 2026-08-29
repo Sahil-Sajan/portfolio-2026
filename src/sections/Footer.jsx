@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo } from "react";
 import "./Footer.css";
 import { useButtonSounds } from "../hooks/useButtonSounds";
 import AnimatedDownwardArrowSmall from "../components/AnimatedDownwardArrowSmall";
@@ -6,48 +6,6 @@ import LinkButtonFooter from "../components/LinkButton/LinkButtonFooter";
 import FooterStudGrid from "../components/FooterStudGrid/FooterStudGrid";
 
 const CURRENT_YEAR = new Date().getFullYear();
-
-const FULL_TEXT = "FI AMANILLAH";
-const TYPE_MS = 120;
-const DELETE_MS = 70;
-const PAUSE_AFTER_TYPE = 2200;
-const PAUSE_AFTER_DELETE = 600;
-
-function useTypingEffect() {
-  const [displayed, setDisplayed] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
-
-  useEffect(() => {
-    let cancelled = false;
-    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-    async function run() {
-      while (!cancelled) {
-        for (let i = 1; i <= FULL_TEXT.length; i++) {
-          if (cancelled) return;
-          setDisplayed(FULL_TEXT.slice(0, i));
-          await sleep(TYPE_MS);
-        }
-        await sleep(PAUSE_AFTER_TYPE);
-        for (let i = FULL_TEXT.length - 1; i >= 0; i--) {
-          if (cancelled) return;
-          setDisplayed(FULL_TEXT.slice(0, i));
-          await sleep(DELETE_MS);
-        }
-        await sleep(PAUSE_AFTER_DELETE);
-      }
-    }
-
-    const cursorInterval = setInterval(() => setShowCursor((v) => !v), 530);
-    run();
-    return () => {
-      cancelled = true;
-      clearInterval(cursorInterval);
-    };
-  }, []);
-
-  return { displayed, showCursor };
-}
 
 const Footer = ({ inProject = false, lenis, isMobile, onBackWithScroll }) => {
   const { playHover: _playHover, playClick: _playClick } = useButtonSounds();
@@ -58,11 +16,6 @@ const Footer = ({ inProject = false, lenis, isMobile, onBackWithScroll }) => {
     () => (inProject ? "SCROLL TO TOP" : "SCROLL TO WORK"),
     [inProject]
   );
-
-  const { displayed, showCursor } = useTypingEffect();
-  const finFirst = isMobile ? "FI " : displayed.slice(0, 3);
-  const finRest  = isMobile ? "AMANILLAH" : displayed.slice(3);
-
 
   return (
     <footer>
@@ -90,7 +43,7 @@ const Footer = ({ inProject = false, lenis, isMobile, onBackWithScroll }) => {
                 <path d="M10.7543 3.03005C10.7543 3.4617 10.4039 3.80955 9.9748 3.80955C9.54316 3.80955 9.19531 3.45916 9.19531 3.03005C9.19531 2.59841 9.5457 2.25056 9.9748 2.25056C10.4039 2.25056 10.7543 2.60095 10.7543 3.03005Z" fill="currentColor" />
               </svg>
             </a>
-            <a href="https://drive.google.com/file/d/1_Wid52EDb-vXa1mFI-EX7_cqGQpFDzzP/view?usp=sharing" target='_blank' aria-label="View resume (PDF)" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick}>
+            <a href="https://drive.google.com/file/d/17iOMwQbhLmzWtPu3i7kzrEA_cd-ozJ7A/view?usp=sharing" target='_blank' aria-label="View resume (PDF)" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick}>
               <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M10.8538 3.64625L7.35375 0.14625C7.30728 0.099833 7.25212 0.063026 7.19143 0.037932C7.13073 0.0128379 7.06568 -5.14929e-05 7 1.546e-07H1C0.734784 1.546e-07 0.48043 0.105357 0.292893 0.292893C0.105357 0.48043 0 0.734784 0 1V12C0 12.2652 0.105357 12.5196 0.292893 12.7071C0.48043 12.8946 0.734784 13 1 13H10C10.2652 13 10.5196 12.8946 10.7071 12.7071C10.8946 12.5196 11 12.2652 11 12V4C11.0001 3.93432 10.9872 3.86927 10.9621 3.80858C10.937 3.74788 10.9002 3.69272 10.8538 3.64625ZM7.5 9.5H3.5C3.36739 9.5 3.24021 9.44732 3.14645 9.35355C3.05268 9.25979 3 9.13261 3 9C3 8.86739 3.05268 8.74021 3.14645 8.64645C3.24021 8.55268 3.36739 8.5 3.5 8.5H7.5C7.63261 8.5 7.75979 8.55268 7.85355 8.64645C7.94732 8.74021 8 8.86739 8 9C8 9.13261 7.94732 9.25979 7.85355 9.35355C7.75979 9.44732 7.63261 9.5 7.5 9.5ZM7.5 7.5H3.5C3.36739 7.5 3.24021 7.44732 3.14645 7.35355C3.05268 7.25979 3 7.13261 3 7C3 6.86739 3.05268 6.74021 3.14645 6.64645C3.24021 6.55268 3.36739 6.5 3.5 6.5H7.5C7.63261 6.5 7.75979 6.55268 7.85355 6.64645C7.94732 6.74021 8 6.86739 8 7C8 7.13261 7.94732 7.25979 7.85355 7.35355C7.75979 7.44732 7.63261 7.5 7.5 7.5ZM7 4V1.25L9.75 4H7Z" fill="currentColor" />
               </svg>
@@ -114,11 +67,18 @@ const Footer = ({ inProject = false, lenis, isMobile, onBackWithScroll }) => {
                 </p>
                 <p className="tagline">ALL LEFTS UNRESERVED</p>
               </div>
-              <p className="fin" aria-hidden="true">
-                <span className="FinFirst">{finFirst}</span>
-                <span className="Fin">{finRest}</span>
-                {!isMobile && <span className="cursor" style={{ opacity: showCursor ? 1 : 0 }}>▌</span>}
-              </p>
+              <div className="au-revoir" aria-hidden="true">
+                <div className="title">
+                  <h1>FI-AMANILLAH</h1>
+                </div>
+                <div className="ghost">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
