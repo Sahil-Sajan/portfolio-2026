@@ -1,6 +1,16 @@
 {
     "projects": [
         {
+            "name": "LISTR",
+            "description": "AI-powered lead response and qualification for real estate",
+            "img": "/project_imgs/l1.png",
+            "tags": [
+                "Web App",
+                "AI Operations",
+                "SaaS"
+            ]
+        },
+        {
             "name": "SENTINEL KIDS",
             "description": "A real-time parental control web platform for monitoring device activity and app usage",
             "img": "/project_imgs/sentinel (2).png",

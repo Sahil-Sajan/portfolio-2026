@@ -1,10 +1,20 @@
 {
     "content": [
         {
+            "type": "img",
+            "url": "/project_imgs/listrnew.jpg",
+            "caption": ""
+        },
+        {
             "type": "bigtext",
             "text1": "OVERVIEW",
             "text2": "AI-powered lead response and qualification for real estate",
             "text3": "Listr is an AI-powered lead-response and qualification platform built specifically for the real estate industry. It intercepts inbound leads from sources such as Zillow, Realtor.com, Facebook Lead Ads, brokerage websites, and custom webhooks, then responds through SMS or web chat in under 60 seconds, 24/7. The AI agent continues the conversation, qualifies the lead based on factors such as budget, timeline, financing status, and area of interest, and hands the conversation to a human agent when the lead is warm enough to convert."
+        },
+        {
+            "type": "img",
+            "url": "/project_imgs/listr10.png",
+            "caption": ""
         },
         {
             "type": "bigtext",
@@ -17,6 +27,11 @@
             "text1": "LEADS",
             "text2": "A complete system of record for every prospect",
             "text3": "The Leads module manages the complete lifecycle of every prospect entering a workspace. Leads move through defined statuses including New, Contacted, Replied, Qualified, Nurturing, Booked, Converted, Dormant, Needs Attention, Opted Out, and Lost. The module also supports source tracking, filterable tabs, CSV/XLSX bulk imports, CSV exports, bulk deletion, advanced filtering, manual lead creation, agent assignment, linked properties, internal notes, and automated alerts."
+        },
+        {
+            "type": "img",
+            "url": "/project_imgs/l2.jpeg",
+            "caption": ""
         },
         {
             "type": "bigtext",
@@ -49,6 +64,11 @@
             "text3": "Listr includes a week-view calendar with availability settings, Google Calendar connection status, buffer times, and slot duration. Appointment booking supports property tours, meetings, follow-up calls, and open houses, with lead, property, and agent selection. The system also handles notifications, reminders, conflict checking, appointment details, rescheduling, cancellation, and completion workflows."
         },
         {
+            "type": "img",
+            "url": "/project_imgs/l3.jpg",
+            "caption": ""
+        },
+        {
             "type": "bigtext",
             "text1": "PROPERTIES",
             "text2": "Keep listing data connected to the lead workflow",
@@ -74,12 +94,6 @@
         },
         {
             "type": "bigtext",
-            "text1": "SETTINGS & COMPLIANCE",
-            "text2": "Operational controls built into the platform",
-            "text3": "The settings system covers profiles, workspaces, team permissions, Twilio configuration, SMTP, AI voice and review prompts, notifications, API keys, billing, plans, and compliance. Compliance controls include SMS disclaimers, STOP/HELP handling, opt-out management, and TCPA-driven quiet hours that automatically pause outbound messaging outside the permitted window in the recipient's timezone."
-        },
-        {
-            "type": "bigtext",
             "text1": "ONBOARDING",
             "text2": "From a new workspace to a live lead-response system",
             "text3": "New workspaces follow an eleven-step guided setup that covers workspace configuration, Twilio number connection, email setup, lead-source integration, AI voice and tone, messaging templates, real SMS testing, team invitations, billing-plan selection, and the final go-live summary. The flow gives users a clear checklist and estimated setup time before moving them into the live dashboard."
@@ -92,6 +106,14 @@
         }
     ],
     "details": {
+        "timeline": "July 2026 – August 2026",
+        "company": "Samarix",
+        "tags": [
+            "AI Agent",
+            "Real Estate",
+            "Multi-Tenant SaaS",
+            "Lead Automation"
+        ],
         "projectTitle": "LISTR",
         "projectLink": "https://listr.live/en"
     }

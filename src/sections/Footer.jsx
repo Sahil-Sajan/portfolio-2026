@@ -1,9 +1,11 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import "./Footer.css";
 import { useButtonSounds } from "../hooks/useButtonSounds";
 import AnimatedDownwardArrowSmall from "../components/AnimatedDownwardArrowSmall";
 import LinkButtonFooter from "../components/LinkButton/LinkButtonFooter";
 import FooterStudGrid from "../components/FooterStudGrid/FooterStudGrid";
+import PixelTrail from "../components/PixelTrail/PixelTrail";
+import { useTheme } from "../context/ThemeContext";
 
 const CURRENT_YEAR = new Date().getFullYear();
 
@@ -11,6 +13,8 @@ const Footer = ({ inProject = false, lenis, isMobile, onBackWithScroll }) => {
   const { playHover: _playHover, playClick: _playClick } = useButtonSounds();
   const playHover = () => _playHover(3);
   const playClick = () => _playClick(3);
+  const { isDark } = useTheme();
+  const studGridRef = useRef(null);
 
   const scrollText = useMemo(
     () => (inProject ? "SCROLL TO TOP" : "SCROLL TO WORK"),
@@ -83,8 +87,19 @@ const Footer = ({ inProject = false, lenis, isMobile, onBackWithScroll }) => {
           </div>
         </div>
 
-        <div className="left">
+        <div className="left" ref={studGridRef} style={{ position: "relative" }}>
           <FooterStudGrid />
+          <PixelTrail
+            gridSize={30}
+            trailSize={0.12}
+            maxAge={300}
+            interpolate={5}
+            color={isDark ? "#C0392B" : "#00A084"}
+            canvasProps={{
+              eventSource: studGridRef,
+              style: { inset: 0, width: "100%", height: "100%", pointerEvents: "none" },
+            }}
+          />
         </div>
       </div>
 
