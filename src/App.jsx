@@ -8,8 +8,10 @@ import TransitionLoader from './components/TransitionLoader/TransitionLoader.jsx
 
 const Project      = lazy(() => import('./pages/Project.jsx'))
 const ModifierDeck = lazy(() => import('./pages/ModifierDeck.jsx'))
+const MobilePlayer = lazy(() => import('./components/MobilePlayer/MobilePlayer.jsx'))
 import { useSmoothScrollConfig } from './hooks/useSmoothScrollConfig'
 import { ThemeProvider } from './context/ThemeContext.jsx'
+import { PlayerProvider } from './context/PlayerContext.jsx'
 
 function App() {
   const flag = false
@@ -154,6 +156,7 @@ function App() {
 
   return (
     <ThemeProvider>
+    <PlayerProvider>
     <>
       {!isPreloaderDone && (
         <Preloader onComplete={handlePreloaderComplete} onMidway={() => setIsAssetLoad(true)} />
@@ -209,8 +212,15 @@ function App() {
             />
           </Suspense>
         )}
+
+        {view === 'project' && (
+          <Suspense fallback={null}>
+            <MobilePlayer />
+          </Suspense>
+        )}
       </ReactLenis>
     </>
+    </PlayerProvider>
     </ThemeProvider>
   );
 }

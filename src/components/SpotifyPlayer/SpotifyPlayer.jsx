@@ -1,13 +1,5 @@
-import { useRef, useState, useEffect } from "react";
 import styles from "./SpotifyPlayer.module.css";
-
-const TRACKS = [
-  { id: 1, name: "3AM AT FALLS",  artist: "JJ47",           src: "/songs/3AM AT FALLS - JJ47 (Prod. @umairmusicxx ) - (320 Kbps).mp3" },
-  { id: 2, name: "Bebasi",        artist: "Talhah Yunus",   src: "/songs/Bebasi - Talhah Yunus _ Prod. by Jokhay & Umair - (64 Kbps).mp3" },
-  { id: 3, name: "JUST A DREAM",  artist: "Talhah Yunus",   src: "/songs/JUST A DREAM - Talhah Yunus _ JJ47 _ Prod. by Jokhay - (320 Kbps).mp3" },
-  { id: 4, name: "SHIKWA",        artist: "Talhah Yunus",   src: "/songs/SHIKWA - Talhah Yunus _ Prod. By Jokhay (Official Music Video) - (320 Kbps).mp3" },
-  { id: 5, name: "TWO TONE",      artist: "Young Stunners", src: "/songs/TWO TONE - Young Stunners _ Talha Anjum _ Talhah Yunus _ Prod. by Umair (Official Music Video) - (320 Kbps).mp3" },
-];
+import { usePlayer } from "../../context/PlayerContext";
 
 function fmt(s) {
   const t = Math.floor(s || 0);
@@ -57,75 +49,17 @@ const PlayIcon = () => (
 
 // ── Main component ───────────────────────────────────────────────────────────
 export default function SpotifyPlayer() {
-  const [idx, setIdx]         = useState(0);
-  const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const audioRef   = useRef(null);
-  const playingRef = useRef(false);
-
-  // Keep ref in sync for use inside callbacks
-  useEffect(() => { playingRef.current = playing; }, [playing]);
-
-  // Load new track whenever index changes
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    const wasPlaying = playingRef.current;
-    audio.src = TRACKS[idx].src;
-    setProgress(0);
-    setDuration(0);
-    if (wasPlaying) audio.play().catch(() => setPlaying(false));
-  }, [idx]);
-
-  // Play / pause
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    if (playing) audio.play().catch(() => setPlaying(false));
-    else audio.pause();
-  }, [playing]);
-
-  const handleTimeUpdate = () => {
-    const a = audioRef.current;
-    if (a && a.duration) setProgress((a.currentTime / a.duration) * 100);
-  };
-
-  const handleLoadedMetadata = () => {
-    const a = audioRef.current;
-    if (a) setDuration(a.duration);
-  };
-
-  const handleEnded = () => {
-    setIdx(i => (i + 1) % TRACKS.length);
-  };
-
-  const prev = () => { setIdx(i => (i - 1 + TRACKS.length) % TRACKS.length); setProgress(0); };
-  const next = () => { setIdx(i => (i + 1) % TRACKS.length); setProgress(0); };
-
-  const seekTo = (e) => {
-    const a = audioRef.current;
-    if (!a || !a.duration) return;
-    const r = e.currentTarget.getBoundingClientRect();
-    const pct = Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100));
-    a.currentTime = (pct / 100) * a.duration;
-    setProgress(pct);
-  };
-
-  const track   = TRACKS[idx];
+  const { track, playing, progress, duration, prev, next, togglePlay, seekTo } = usePlayer();
   const elapsed = duration > 0 ? (progress / 100) * duration : 0;
+
+  const handleSeek = (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const pct = ((e.clientX - r.left) / r.width) * 100;
+    seekTo(pct);
+  };
 
   return (
     <div className={styles.container}>
-      {/* Hidden audio element */}
-      <audio
-        ref={audioRef}
-        preload="metadata"
-        onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleLoadedMetadata}
-        onEnded={handleEnded}
-      />
-
       {/* ── Info panel ── */}
       <div className={styles.info}>
         <span className={styles.label}>
@@ -138,7 +72,7 @@ export default function SpotifyPlayer() {
 
         <div className={styles.controls}>
           <button className={styles.btn} onClick={prev} aria-label="Previous track"><PrevIcon /></button>
-          <button className={`${styles.btn} ${styles.btnPlay}`} onClick={() => setPlaying(p => !p)} aria-label={playing ? "Pause" : "Play"}>
+          <button className={`${styles.btn} ${styles.btnPlay}`} onClick={togglePlay} aria-label={playing ? "Pause" : "Play"}>
             {playing ? <PauseIcon /> : <PlayIcon />}
           </button>
           <button className={styles.btn} onClick={next} aria-label="Next track"><NextIcon /></button>
@@ -146,7 +80,7 @@ export default function SpotifyPlayer() {
 
         <div className={styles.progressRow}>
           <span className={styles.time}>{fmt(elapsed)}</span>
-          <div className={styles.bar} onClick={seekTo} role="slider" aria-label="Seek">
+          <div className={styles.bar} onClick={handleSeek} role="slider" aria-label="Seek">
             <div className={styles.fill} style={{ width: `${progress}%` }} />
           </div>
           <span className={styles.time}>{fmt(duration)}</span>

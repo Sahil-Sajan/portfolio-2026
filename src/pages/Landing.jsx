@@ -10,9 +10,9 @@ import Work from '../sections/Work.jsx';
 import About from '../sections/About.jsx';
 import Contact from '../sections/Contact.jsx';
 import Footer from '../sections/Footer.jsx';
+import { useIsMobile } from '../hooks/useIsMobile';
 
-const LampWire     = lazy(() => import('../components/LampWire/LampWire.jsx'));
-const MobilePlayer = lazy(() => import('../components/MobilePlayer/MobilePlayer.jsx'));
+const LampWire = lazy(() => import('../components/LampWire/LampWire.jsx'));
 
 const Landing = ({isLoaded, onProjectSelect, isIncomingTransition, onModifierDeckSelect, isPreloaderDone, returnedFrom, pendingScrollTarget, onScrollTargetConsumed}) => {
     const [linkHovered, setLinkHovered] = useState(false);
@@ -21,9 +21,7 @@ const Landing = ({isLoaded, onProjectSelect, isIncomingTransition, onModifierDec
     const workRef = useRef(null);
     const contactRef = useRef(null);
     const lenis = useLenis();
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 1201);
-    const resizeTimeoutRef = useRef(null);
-    const lastWidthRef = useRef(window.innerWidth);
+    const isMobile = useIsMobile();
 
       // Hook up Lenis to GSAP ticker safely
     // useEffect(() => {
@@ -32,35 +30,10 @@ const Landing = ({isLoaded, onProjectSelect, isIncomingTransition, onModifierDec
     //     gsap.ticker.add((time) => {
     //         lenis.raf(time * 1000); // Convert time from seconds to milliseconds
     //       });
-          
+
     //     // Disable lag smoothing in GSAP to prevent any delay in scroll animations
     //     gsap.ticker.lagSmoothing(0);
     // }, [lenis]);
-
-    // Separate effect for handling resize with debounce
-    useEffect(() => {
-        const handleResize = () => {
-            clearTimeout(resizeTimeoutRef.current);
-
-            resizeTimeoutRef.current = setTimeout(() => {
-                const currentWidth = window.innerWidth;
-                const wasMobile = isMobile;
-                const isMobileNow = currentWidth < 1201;
-
-                // Only update state if mobile status actually changed
-                if (wasMobile !== isMobileNow) {
-                    setIsMobile(isMobileNow);
-                    lastWidthRef.current = currentWidth;
-                }
-            }, 250); // Debounce for 250ms to avoid address bar triggering reload
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-            clearTimeout(resizeTimeoutRef.current);
-        };
-    }, [isMobile]);
 
     useEffect(() => {
         if (!isIncomingTransition && pendingScrollTarget && lenis) {
@@ -115,7 +88,6 @@ const Landing = ({isLoaded, onProjectSelect, isIncomingTransition, onModifierDec
     return (
         <div id="main-content" style={currentStyle}>
             {isMobile && <Suspense fallback={null}><LampWire /></Suspense>}
-            {isMobile && <Suspense fallback={null}><MobilePlayer /></Suspense>}
             <HeaderComponent setLinkHovered={setLinkHovered} lenis={lenis} isLoaded={isPreloaderDone} />
             <main>
                 <HomeComponent linkHovered={linkHovered} isLoaded={isPreloaderDone} isLoadedforHero={!isIncomingTransition && isPreloaderDone} handleProjectSelect={onProjectSelect} ref={homeRef} onModifierDeckSelect={onModifierDeckSelect} returnedFrom={returnedFrom}/>

@@ -1,13 +1,6 @@
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./MobilePlayer.module.css";
-
-const TRACKS = [
-  { id: 1, name: "3AM AT FALLS",  artist: "JJ47",           src: "/songs/3AM AT FALLS - JJ47 (Prod. @umairmusicxx ) - (320 Kbps).mp3" },
-  { id: 2, name: "Bebasi",        artist: "Talhah Yunus",   src: "/songs/Bebasi - Talhah Yunus _ Prod. by Jokhay & Umair - (64 Kbps).mp3" },
-  { id: 3, name: "JUST A DREAM",  artist: "Talhah Yunus",   src: "/songs/JUST A DREAM - Talhah Yunus _ JJ47 _ Prod. by Jokhay - (320 Kbps).mp3" },
-  { id: 4, name: "SHIKWA",        artist: "Talhah Yunus",   src: "/songs/SHIKWA - Talhah Yunus _ Prod. By Jokhay (Official Music Video) - (320 Kbps).mp3" },
-  { id: 5, name: "TWO TONE",      artist: "Young Stunners", src: "/songs/TWO TONE - Young Stunners _ Talha Anjum _ Talhah Yunus _ Prod. by Umair (Official Music Video) - (320 Kbps).mp3" },
-];
+import { usePlayer } from "../../context/PlayerContext";
 
 const PrevIcon = () => (
   <svg width="16" height="16" viewBox="0 0 14 14" fill="none">
@@ -47,39 +40,11 @@ function Disc({ playing, size = 64 }) {
 }
 
 export default function MobilePlayer() {
-  const [idx, setIdx]       = useState(0);
-  const [playing, setPlaying] = useState(false);
-  const [open, setOpen]     = useState(false);
-  const audioRef            = useRef(null);
-  const playingRef          = useRef(false);
-
-  useEffect(() => { playingRef.current = playing; }, [playing]);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    const was = playingRef.current;
-    audio.src = TRACKS[idx].src;
-    if (was) audio.play().catch(() => setPlaying(false));
-  }, [idx]);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    if (playing) audio.play().catch(() => setPlaying(false));
-    else audio.pause();
-  }, [playing]);
-
-  const prev = () => setIdx(i => (i - 1 + TRACKS.length) % TRACKS.length);
-  const next = () => setIdx(i => (i + 1) % TRACKS.length);
-  const handleEnded = () => setIdx(i => (i + 1) % TRACKS.length);
-
-  const track = TRACKS[idx];
+  const [open, setOpen] = useState(false);
+  const { track, playing, prev, next, togglePlay } = usePlayer();
 
   return (
     <div className={styles.wrapper}>
-      <audio ref={audioRef} preload="metadata" onEnded={handleEnded} />
-
       {/* Mini panel — shows when disc is tapped */}
       {open && (
         <div className={styles.panel}>
@@ -92,7 +57,7 @@ export default function MobilePlayer() {
           </div>
           <div className={styles.panelControls}>
             <button className={styles.ctrl} onClick={prev} aria-label="Previous"><PrevIcon /></button>
-            <button className={`${styles.ctrl} ${styles.ctrlPlay}`} onClick={() => setPlaying(p => !p)} aria-label={playing ? "Pause" : "Play"}>
+            <button className={`${styles.ctrl} ${styles.ctrlPlay}`} onClick={togglePlay} aria-label={playing ? "Pause" : "Play"}>
               {playing ? <PauseIcon /> : <PlayIcon />}
             </button>
             <button className={styles.ctrl} onClick={next} aria-label="Next"><NextIcon /></button>
