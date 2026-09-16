@@ -10,6 +10,7 @@ const Project      = lazy(() => import('./pages/Project.jsx'))
 const ModifierDeck = lazy(() => import('./pages/ModifierDeck.jsx'))
 const MobilePlayer = lazy(() => import('./components/MobilePlayer/MobilePlayer.jsx'))
 import { useSmoothScrollConfig } from './hooks/useSmoothScrollConfig'
+import { useIsMobile } from './hooks/useIsMobile'
 import { ThemeProvider } from './context/ThemeContext.jsx'
 import { PlayerProvider } from './context/PlayerContext.jsx'
 
@@ -27,6 +28,7 @@ function App() {
   const [returnedFrom, setReturnedFrom] = useState(null)
   const lenisRef = useRef(null)
   const skipHistoryPush = useRef(false)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -213,7 +215,7 @@ function App() {
           </Suspense>
         )}
 
-        {view === 'project' && (
+        {(isMobile || view === 'project') && (
           <Suspense fallback={null}>
             <MobilePlayer />
           </Suspense>
